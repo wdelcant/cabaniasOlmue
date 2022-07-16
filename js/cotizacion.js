@@ -1,4 +1,5 @@
 // declaramos las variables a ocupar
+
 let usuarios = []; // guarda usuarios que accederan al sistema
 
 let formulario;
@@ -10,11 +11,14 @@ let inputEdad;
 let tabla;
 let datosRegistros;
 let btnVaciar;
-
+let btnImpr;
 let formSelect;
 let inputCabains;
 let inputAdults;
 let inputChildren;
+let oneCabein = 60000;
+let twoCabein = 120000;
+let totalPrice = oneCabein + twoCabein;
 
 
 // seccion de validaciones de funciones
@@ -25,6 +29,7 @@ function main() {
     agregarUsuariosTabla();
     extraerLogin();
     vaciarUsuariosLocalStorage();
+    botonImprimir();
 }
 
 class Usuarios {
@@ -47,7 +52,7 @@ function inicializarElementos() { // inicializa los elementos
     tabla = document.getElementById("tablaUsuarios");
     datosRegistros = document.getElementById("datosRegistros");
     btnVaciar = document.getElementById("btnVaciar");
-
+    btnImpr = document.getElementById("btnImpr");
     formSelect = document.getElementById("formSelect");
     inputCabains = document.getElementById("inputCabains");
     inputAdults = document.getElementById("inputAdults");
@@ -102,10 +107,12 @@ function validarFormulario(e) {
     }
 
     if (run === '') {
-        setErrorFor(inputRun, 'El RUN/DNI no puede estar vacío');
-    } else if (run.length < 9) {
+        setErrorFor(inputRun, 'El RUN no puede estar vacío');
+    } else if (!isRut(run)) {
+        setErrorFor(inputRun, 'El formato no es válido 11111111-1');
+    } else if (run.length < 10) {
         setErrorFor(inputRun, 'Debe tener al menos 9 caracteres');
-    } else if (run.length > 9) {
+    } else if (run.length > 10) {
         setErrorFor(inputRun, 'Debe tener menos de 9 caracteres');
     } else {
         setSuccessFor(inputRun);
@@ -139,25 +146,29 @@ function validarIngresos(e) {
     }
     if (adults < 1) {
         setErrorFor(inputAdults, 'No se pueeden arrendar cabañas sin adultos');
+    } else if (cabains <= 1 && total >= 7) {
+        setErrorFor(inputAdults, 'El tope de personas es 6 por cabaña');
     } else {
         setSuccessFor(inputAdults);
     }
     if (children === '') {
         setErrorFor(inputChildren, 'No puede estar vacia');
+    } else if (cabains <= 1 && total >= 7) {
+        setErrorFor(inputChildren, 'El tope de personas es 6 por cabaña');
+    } else if (adults === 0 && children > adults) {
+        setErrorFor(inputChildren, 'No puede ser mayor a los adultos');
     } else {
         setSuccessFor(inputChildren);
     }
     if (cabains === '') {
         setErrorFor(inputCabains, 'No puede estar vacia');
     } else if (total >= 7 && cabains === 1) {
-        setErrorFor(inputCabains, 'El maximo de personas es 6, si desea mas debe arrendar 2 cabañas.');
+        setErrorFor(inputCabains, 'El máximo de personas es 6, si desea más debe arrendar 2 cabañas.');
     } else if (total >= 13 && cabains === 2) {
-        setErrorFor(inputCabains, 'El maximo de personas es 12, si desea mas debes contactar a la administracion.');
+        setErrorFor(inputCabains, 'El máximo de personas es 12, si desea más debe contactar a la administración.');
     } else {
         setSuccessFor(inputCabains);
     }
-
-
 }
 
 
@@ -180,6 +191,7 @@ function limpiarTabla() {
     }
 }
 
+
 function almacenarUsuariosLocalStorage() {
     localStorage.setItem("listaUsuarios", JSON.stringify(usuarios));
 }
@@ -195,6 +207,10 @@ function obtenerUsuariosLocalStorage() {
 function vaciarUsuariosLocalStorage() {
     btnVaciar.onclick = () => localStorage.removeItem('listaUsuarios');
 
+}
+
+function botonImprimir() {
+    btnImpr.onclick = () => window.print();
 }
 
 // se extrae usuario y correo de localStorage
@@ -217,7 +233,6 @@ function extraerLogin() {
         });
     }
 }
-
 
 //inicializar el programa
 main();
