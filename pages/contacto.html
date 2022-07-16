@@ -15,7 +15,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://wilsondelcanto.bss.design/assets/img/piscina.jpg">
-    <link rel="icon" type="image/png" sizes="940x585" href="assets/img/cabana.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon.ico">
 
     <!-- Bootstrap CSS v5.2.0-beta1 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
@@ -51,14 +51,15 @@
                     <div class="collapse navbar-collapse" data-aos="fade" data-aos-duration="2500" data-aos-delay="300"
                         id="navcol-1">
                         <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"><a class="nav-link active" href="../index.html"
-                                    target="_top">Inicio</a>
+                            <li class="nav-item"><a class="nav-link " href="../index.html" target="_top">Inicio</a>
                             </li>
-                            <li class="nav-item"><a class="nav-link active" href="./eventos.html">Eventos</a></li>
-                            <li class="nav-item"><a class="nav-link active" href="#!">Cabañas</a>
+                            <li class="nav-item"><a class="nav-link " href="./eventos.html">Eventos</a></li>
+                            <li class="nav-item"><a class="nav-link " href="#!">Cabañas</a>
                             </li>
-                            <li class="nav-item"><a class="nav-link active" href="#!">Entretención</a></li>
+                            <li class="nav-item"><a class="nav-link " href="#!">Entretención</a></li>
                             <li class="nav-item"><a class="nav-link active" href="#">Contacto</a>
+                            <li class="nav-item"><a id="myacc" class="nav-link " href="#"><b> Reservar</b> <i
+                                        class="fa fa-book"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -79,7 +80,7 @@
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="#"></a>
 
-                <form action="./pages/reserva.html">
+                <form action="../pages/reserva.html">
                     <button type="submit"
                         class="btn btn-outline-light order-first order-sm-last pulse animated infinite">
                         RESERVAR
@@ -103,6 +104,59 @@
                                                             <div class="d-none d-md-block"></div>
                 </div>
         </nav>
+
+
+
+        <!-- Modal Login -->
+        <div class="container">
+            <div id="login" class="modal">
+                <!-- Contenido del modal -->
+                <div class="modal-content">
+
+                    <div class="headerLogin">
+                        <h2>Crear Cuenta</h2>
+                        <span class="close">&times;</span>
+                    </div>
+                    <form id="form" class="formLogin">
+                        <div class="form-control">
+                            <label for="username">Usuario</label>
+                            <input type="text" placeholder="usuario" id="username" />
+                            <i class="fa fa-check-circle"></i>
+                            <i class="fa fa-exclamation-circle"></i>
+                            <small>Mensaje de error</small>
+                        </div>
+                        <div class="form-control">
+                            <label for="username">Correo</label>
+                            <input type="email" placeholder="usuario@usuario.com" id="email" />
+                            <i class="fa fa-check-circle"></i>
+                            <i class="fa fa-exclamation-circle"></i>
+                            <small>Mensaje de error</small>
+                        </div>
+                        <div class="form-control">
+                            <label for="username">Contraseña</label>
+                            <input type="password" placeholder="123456" id="password" />
+                            <i class="fa fa-check-circle"></i>
+                            <i class="fa fa-exclamation-circle"></i>
+                            <small>Mensaje de error</small>
+                        </div>
+                        <div class="form-control">
+                            <label for="username">Repita la contraseña</label>
+                            <input type="password" placeholder="123456" id="passwordTwo" />
+                            <i class="fa fa-check-circle"></i>
+                            <i class="fa fa-exclamation-circle"></i>
+                            <small>Mensaje de error</small>
+                        </div>
+                        <button class="btn btn-primary">Registrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
     </header>
 
 
@@ -127,7 +181,8 @@
                                     class="form-control" type="email" name="email" /></div>
                             <div class="mb-3"><label class="form-label" for="message">Mensaje</label><textarea
                                     id="message" class="form-control" name="message" rows="6"></textarea></div>
-                            <div class="mb-3"><button class="btn btn-primary btn-enviar" type="submit">Enviar </button></div>
+                            <div class="mb-3"><button class="btn btn-primary btn-enviar" type="submit">Enviar </button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -200,8 +255,8 @@
                         </h6>
                         <p><i class="fa fa-home me-3"></i> Miraflores #5000</span><b> Olmué, Chile</b></p>
                         <p><i class="fa fa-phone me-3"></i><b>+569 54205188</b> </p>
-                        <p><i class="fa fa-envelope me-3"></i><a href="mailto:contacto@cabaniasolmue.cl" class="text-decoration-none mail"
-                                target="_blank"><b>contacto@cabaniasolmue.cl</b></a>
+                        <p><i class="fa fa-envelope me-3"></i><a href="mailto:contacto@cabaniasolmue.cl"
+                                class="text-decoration-none mail" target="_blank"><b>contacto@cabaniasolmue.cl</b></a>
                         </p>
                     </div>
                     <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 redes">
@@ -249,6 +304,7 @@
     </script>
     <!-- Custom JS -->
     <script src="../js/menu.js"></script>
+    <script src="../js/login.js"></script>
 
 </body>
 

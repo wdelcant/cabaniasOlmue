@@ -53,11 +53,13 @@
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item"><a class="nav-link active" href="index.html" target="_top">Inicio</a>
                             </li>
-                            <li class="nav-item"><a class="nav-link active" href="./pages/eventos.html">Eventos</a></li>
-                            <li class="nav-item"><a class="nav-link active" href="#!">Cabañas</a>
+                            <li class="nav-item"><a class="nav-link " href="./pages/eventos.html">Eventos</a></li>
+                            <li class="nav-item"><a class="nav-link " href="#!">Cabañas</a>
                             </li>
-                            <li class="nav-item"><a class="nav-link active" href="#!">Entretención</a></li>
-                            <li class="nav-item"><a class="nav-link active" href="./pages/contacto.html">Contacto</a>
+                            <li class="nav-item"><a class="nav-link " href="#!">Entretención</a></li>
+                            <li class="nav-item"><a class="nav-link " href="./pages/contacto.html">Contacto</a>
+                            <li class="nav-item"><a id="myacc" class="nav-link " href="#"><b> Registrarse</b> <i
+                                        class="fa fa-book"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -70,9 +72,6 @@
                     <span>Bienvenidos al mejor lugar de relajo de </span><span class="logo">Olmué</span>
                 </h1>
 
-                <a class="btn m-auto align-self-md-center align-self-xl-center align-self-xxl-center boton-reserva"
-                    role="button" data-aos="fade" data-aos-duration="2500" data-aos-delay="300"
-                    href="./pages/reserva.html">RESERVAR</a>
             </div>
         </div>
         <!-- menu flotante -->
@@ -81,12 +80,6 @@
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="#"></a>
 
-                <form action="./pages/reserva.html">
-                    <button type="submit"
-                        class="btn btn-outline-light order-first order-sm-last pulse animated infinite">
-                        RESERVAR
-                    </button>
-                </form>
                 <div class="collapse navbar-collapse flex-grow-0 order-md-first" id="navcol-6">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item"></li>
@@ -105,6 +98,53 @@
                                                             <div class="d-none d-md-block"></div>
                 </div>
         </nav>
+
+        <!-- Modal Login -->
+        <div class="container animate__animated animate__fadeIn animate__slower animate__repeat-1 animate__delay-1s">
+            <div id="login" class="modal">
+                <!-- Contenido del modal -->
+                <div class="modal-content">
+
+                    <div class="headerLogin">
+                        <h2>Crear Cuenta</h2>
+                        <span class="close">&times;</span>
+                    </div>
+                    <form id="formLogin" class="formLogin-style">
+                        <div class="form-control">
+                            <label for="username">Usuario</label>
+                            <input type="text" placeholder="usuario" id="username" />
+                            <i class="fa fa-check-circle"></i>
+                            <i class="fa fa-exclamation-circle"></i>
+                            <small>Mensaje de error</small>
+                        </div>
+                        <div class="form-control">
+                            <label for="username">Correo</label>
+                            <input type="email" placeholder="usuario@usuario.com" id="email" />
+                            <i class="fa fa-check-circle"></i>
+                            <i class="fa fa-exclamation-circle"></i>
+                            <small>Mensaje de error</small>
+                        </div>
+                        <div class="form-control">
+                            <label for="username">Contraseña</label>
+                            <input type="password" placeholder="123456" id="password" />
+                            <i class="fa fa-check-circle"></i>
+                            <i class="fa fa-exclamation-circle"></i>
+                            <small>Mensaje de error</small>
+                        </div>
+                        <div class="form-control">
+                            <label for="username">Repita la contraseña</label>
+                            <input type="password" placeholder="123456" id="passwordTwo" />
+                            <i class="fa fa-check-circle"></i>
+                            <i class="fa fa-exclamation-circle"></i>
+                            <small>Mensaje de error</small>
+                        </div>
+                        <button id="btnResumen" type="submit" class="btn btn-primary">Registrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
     </header>
     <!-- contenido -->
     <!-- quienes somos? -->
@@ -135,9 +175,8 @@
             <div class="col">
                 <div data-aos="fade-down" data-aos-duration="900" data-aos-delay="350" class="p-4">
                     <h4>Fiestas de empresas</h4>
-                    <p>Ponte en contacto con
-                        nosotros y celebramos tu idea. Si quieres hacer la fiesta de tu empresa inolvidable y
-                        maravillosa. Fiestas de navidad con Santa Claus para los menores, aniversarios, etc.</p>
+                    <p>Ponte en contacto con nosotros para una increible fiesta navidad con Santa Claus para los
+                        menores, aniversarios, etc.</p>
                 </div>
             </div>
         </div>
@@ -248,9 +287,6 @@
         </div>
     </section>
 
-
-
-
     <!-- siguiente sección en construcción -->
     <!-- información de contacto y mapa -->
 
@@ -267,8 +303,7 @@
                     </div>
                     <div class="col-md-5 col-12">
                         <div class="form-outline form-white mb-4">
-                            <input type="email" id="email" class="form-control"
-                                placeholder="Ingrese su correo electrónico" />
+                            <input type="email" class="form-control" placeholder="Ingrese su correo electrónico" />
                         </div>
                     </div>
                     <div class="col-auto">
@@ -369,7 +404,10 @@
         AOS.init();
     </script>
     <!-- Custom JS -->
-    <script src="./js/menu.js"></script>
+    <script src="./js/utils/menu.js"></script>
+    <script src="./js/utils/modalLogin.js"></script>
+    <script src="./js/utils/errorValidation.js"></script>
+    <script src="./js/login.js"></script>
 </body>
 
 </html>
