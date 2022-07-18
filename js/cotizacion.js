@@ -1,6 +1,6 @@
 // declaramos las variables a ocupar
 
-let usuarios = []; // guarda usuarios que accederan al sistema
+let usuarios = []; // guarda usuarios que accederán al sistema
 
 let formulario;
 let inputNombre;
@@ -13,15 +13,15 @@ let datosRegistros;
 let btnVaciar;
 let btnImpr;
 let formSelect;
-let inputCabains;
+let inputCabins;
 let inputAdults;
 let inputChildren;
-let oneCabein = 60000;
-let twoCabein = 120000;
-let totalPrice = oneCabein + twoCabein;
+let oneCabin = 60000;
+let twoCabin = 120000;
+let totalPrice = oneCabin + twoCabin;
 
 
-// seccion de validaciones de funciones
+// sección de validaciones de funciones
 function main() {
     inicializarElementos();
     inicializarEventos();
@@ -54,7 +54,7 @@ function inicializarElementos() { // inicializa los elementos
     btnVaciar = document.getElementById("btnVaciar");
     btnImpr = document.getElementById("btnImpr");
     formSelect = document.getElementById("formSelect");
-    inputCabains = document.getElementById("inputCabains");
+    inputCabins = document.getElementById("inputCabins");
     inputAdults = document.getElementById("inputAdults");
     inputChildren = document.getElementById("inputChildren");
 
@@ -119,7 +119,7 @@ function validarFormulario(e) {
     }
 
     if (edad === '') {
-        setErrorFor(inputEdad, 'La edad no puede estar vacia');
+        setErrorFor(inputEdad, 'La edad no puede estar vacía');
     } else if (edad === 0) {
         setErrorFor(inputEdad, 'La edad no puede ser 0');
     } else {
@@ -136,7 +136,7 @@ function validarFormulario(e) {
 
 function validarIngresos(e) {
     e.preventDefault();
-    let cabains = parseInt(inputCabains.value);
+    let cabins = parseInt(inputCabins.value);
     let adults = parseInt(inputAdults.value);
     let children = parseInt(inputChildren.value);
     let total = adults + children;
@@ -145,42 +145,42 @@ function validarIngresos(e) {
 
     }
     if (adults < 1) {
-        setErrorFor(inputAdults, 'No se pueeden arrendar cabañas sin adultos');
-    } else if (cabains <= 1 && total >= 7) {
+        setErrorFor(inputAdults, 'No se pueden arrendar cabañas sin adultos');
+    } else if (cabins <= 1 && total >= 7) {
         setErrorFor(inputAdults, 'El tope de personas es 6 por cabaña');
     } else {
         setSuccessFor(inputAdults);
     }
     if (children === '') {
-        setErrorFor(inputChildren, 'No puede estar vacia');
-    } else if (cabains <= 1 && total >= 7) {
+        setErrorFor(inputChildren, 'No puede estar vacía');
+    } else if (cabins <= 1 && total >= 7) {
         setErrorFor(inputChildren, 'El tope de personas es 6 por cabaña');
     } else if (adults === 0 && children > adults) {
         setErrorFor(inputChildren, 'No puede ser mayor a los adultos');
     } else {
         setSuccessFor(inputChildren);
     }
-    if (cabains === '') {
-        setErrorFor(inputCabains, 'No puede estar vacia');
-    } else if (total >= 7 && cabains === 1) {
-        setErrorFor(inputCabains, 'El máximo de personas es 6, si desea más debe arrendar 2 cabañas.');
-    } else if (total >= 13 && cabains === 2) {
-        setErrorFor(inputCabains, 'El máximo de personas es 12, si desea más debe contactar a la administración.');
+    if (cabins === '') {
+        setErrorFor(inputCabins, 'No puede estar vacía');
+    } else if (total >= 7 && cabins === 1) {
+        setErrorFor(inputCabins, 'El máximo de personas es 6, si desea más debe arrendar 2 cabañas.');
+    } else if (total >= 13 && cabins === 2) {
+        setErrorFor(inputCabins, 'El máximo de personas es 12, si desea más debe contactar a la administración.');
     } else {
-        setSuccessFor(inputCabains);
+        setSuccessFor(inputCabins);
     }
 }
 
 
-function agregarUsuariosTabla() { // agrega los usuarios a la cotizacion
+function agregarUsuariosTabla() { // agrega los usuarios a la cotización
     usuarios.forEach((usuario) => {
         let filaTabla = document.createElement("tr");
         filaTabla.innerHTML = `
-      <td>${usuario.nombre}</td>
-      <td>${usuario.apellido}</td>
-      <td>${usuario.apellidoDos}</td>
-      <td>${usuario.run}</td>
-      <td>${usuario.edad}</td>`;
+            <td>${usuario.nombre}</td>
+            <td>${usuario.apellido}</td>
+            <td>${usuario.apellidoDos}</td>
+            <td>${usuario.run}</td>
+            <td>${usuario.edad}</td>`;
         tabla.tBodies[0].append(filaTabla);
     });
 }
@@ -203,7 +203,7 @@ function obtenerUsuariosLocalStorage() {
         usuarios = JSON.parse(usuariosAlmacenados);
     }
 }
-// vacia la lista de usuarios Almacenados
+// vacía la lista de usuarios Almacenados
 function vaciarUsuariosLocalStorage() {
     btnVaciar.onclick = () => localStorage.removeItem('listaUsuarios');
 
