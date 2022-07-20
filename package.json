@@ -18,5 +18,8 @@
   "homepage": "https://github.com/wdelcant/cabaniasOlmue#readme",
   "devDependencies": {
     "sass": "^1.53.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.2.0"
   }
 }

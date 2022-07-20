@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
+    <!-- Toastify -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     <!-- Font Awesome v6.1.1 -->
     <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css">
 
@@ -171,7 +174,7 @@
 
                         <div class="mb-3 form-control">
                             <label class="form-label">Apellido materno</label>
-                            <input type="text" class="form-control" id="inputApellidoDos" />
+                            <input type="text" class="form-control" id="inputApellidoMaterno" />
                             <i class="fa fa-check-circle"></i>
                             <i class="fa fa-exclamation-circle"></i>
                             <small>Mensaje de error</small>
@@ -194,7 +197,7 @@
                         </div>
 
                         <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary">Agregar</button>
+                            <button id="btnAdd" type="submit" class="btn btn-primary">Agregar</button>
                         </div>
 
                     </form>
@@ -221,11 +224,8 @@
 
                                 </div>
                                 <p>Detalles de su cotización:</p>
-                                <ul>
-                                    <li>Cantidad de cabañas: <span id="cabains"></span></li>
-                                    <li>Adultos: <span id="adults"></span></li>
-                                    <li>Niños: <span id="kids"></span></li>
-                                    <li>Total de personas: <span id="total"></span></li>
+                                <ul id="listaDetalles">
+
                                 </ul>
                                 </p>
 
@@ -379,8 +379,8 @@
     <script>
         AOS.init();
     </script>
-    <!-- JSpdf  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Toastify -->
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <!-- Custom JS -->
     <script src="../js/utils/modalResumen.js"></script>
     <script src="../js/utils/errorValidation.js"></script>

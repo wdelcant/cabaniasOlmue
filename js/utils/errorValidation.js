@@ -21,3 +21,6 @@ function isRut(inputRun) { // valida el rut completo
 	return /^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test(inputRun);
 } // fin de la función isRut
 
+function isLetters(inputLetters) { // valida las letras
+	return /^[a-zA-Z\s]+$/.test(inputLetters);
+} // fin de la función isLetras
