@@ -195,20 +195,22 @@ function validarIngresos(e) {
     } else {
         setSuccessFor(inputCabins);
     }
-    ingresos.push(ingreso);
-    agregarTotalDetalles();
-    Toastify({
-        text: "Ahora agrega los detalles de los ingresos",
-        className: "info",
-        duration: 2500,
-        gravity: "top",
-        position: "right",
-        style: {
-            background: "linear-gradient(to right, #d6ae7b, #eacda3)",
-            color: "#ffffff",
-            border: "1px solid #ffffff",
-        }
-    }).showToast();
+    if (total !== 0 && total <= 12) {
+        ingresos.push(ingreso);
+        agregarTotalDetalles();
+        Toastify({
+            text: "Ahora agrega los detalles de los ingresos",
+            className: "info",
+            duration: 2500,
+            gravity: "top",
+            position: "right",
+            style: {
+                background: "linear-gradient(to right, #d6ae7b, #eacda3)",
+                color: "#ffffff",
+                border: "1px solid #ffffff",
+            }
+        }).showToast();
+    }
 }
 
 function agregarTotalDetalles() {
