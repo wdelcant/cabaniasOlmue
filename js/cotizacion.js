@@ -23,9 +23,6 @@ let ingreso;
 let oneCabin = 60000;
 let twoCabin = 120000;
 
-
-
-
 // sección de validaciones de funciones
 function main() {
     inicializarElementos();
@@ -37,7 +34,6 @@ function main() {
     vaciarUsuariosLocalStorage();
     botonImprimir();
 }
-
 class Usuarios {
     constructor(nombre, apellido, apellidoMaterno, run, edad) {
         this.nombre = nombre.toUpperCase();
@@ -58,7 +54,6 @@ class Ingresos {
 
 function inicializarElementos() { // inicializa los elementos
     formulario = document.getElementById('formulario');
-
     inputNombre = document.getElementById('inputNombre');
     inputApellido = document.getElementById('inputApellido');
     inputApellidoMaterno = document.getElementById('inputApellidoMaterno');
@@ -77,22 +72,18 @@ function inicializarElementos() { // inicializa los elementos
 }
 
 function inicializarEventos() {
-
     formulario.onsubmit = (e) => validarFormulario(e);
     formSelect.onsubmit = (e) => validarIngresos(e);
-
 }
 
 function validarFormulario(e) {
     e.preventDefault();
-
     let nombre = inputNombre.value
     let apellido = inputApellido.value;
     let apellidoMaterno = inputApellidoMaterno.value;
     let run = inputRun.value;
     let edad = parseInt(inputEdad.value);
     let usuario = new Usuarios(nombre, apellido, apellidoMaterno, run, edad);
-
 
     if (nombre === '') {
         setErrorFor(inputNombre, 'El nombre no puede estar vacío');
@@ -150,7 +141,6 @@ function validarFormulario(e) {
         setSuccessFor(inputEdad);
     }
 
-
     if (usuarios !== '' && isLetters(nombre) && isLetters(apellido) && isLetters(apellidoMaterno) && isRut(run) && edad > 0 && edad <= 100) {
         usuarios.push(usuario);
         formulario.reset();
@@ -160,17 +150,16 @@ function validarFormulario(e) {
         Toastify({
             text: "Cliente agregado correctamente",
             className: "info",
-            duration: 2000,
+            duration: 2500,
             gravity: "top",
             position: "right",
             style: {
-                background: "linear-gradient(to right, #0f2027, #203a43, #2c5364)",
+                background: "linear-gradient(to right, #d6ae7b, #eacda3)",
                 color: "#ffffff",
             }
         }).showToast();
     }
 }
-
 
 function validarIngresos(e) {
     e.preventDefault();
@@ -207,12 +196,23 @@ function validarIngresos(e) {
     }
     ingresos.push(ingreso);
     agregarTotalDetalles();
+    Toastify({
+        text: "Ahora agrega los detalles de los ingresos",
+        className: "info",
+        duration: 2500,
+        gravity: "top",
+        position: "right",
+        style: {
+            background: "linear-gradient(to right, #d6ae7b, #eacda3)",
+            color: "#ffffff",
+            border: "1px solid #ffffff",
+        }
+    }).showToast();
 }
 
 function agregarTotalDetalles() {
     ingresos.forEach((ingreso) => {
         let Detalle = document.createElement('ul');
-
         Detalle.innerHTML = `
         <li>Cantidad de cabañas: ${ingreso.cabins}</li>
         <li>Adultos: ${ingreso.adults}</li>
@@ -223,24 +223,17 @@ function agregarTotalDetalles() {
     });
 }
 
-
 function agregarUsuariosTabla() { // agrega los usuarios a la cotización
-
     usuarios.forEach((usuario) => {
         let filaTabla = document.createElement('tr');
-
         filaTabla.innerHTML = `
             <td>${usuario.nombre}</td>
             <td>${usuario.apellido}</td>
             <td>${usuario.apellidoMaterno}</td>
             <td>${usuario.run}</td>
             <td>${usuario.edad}</td>`;
-
         tabla.tBodies[0].append(filaTabla);
-
-
     });
-
 }
 
 function limpiarTabla() {
@@ -255,11 +248,9 @@ function almacenarUsuariosLocalStorage() {
 
 function obtenerUsuariosLocalStorage() {
     let usuariosAlmacenados = localStorage.getItem('listaUsuarios');
-
-    if (usuariosAlmacenados !== null) {
-        usuarios = JSON.parse(usuariosAlmacenados);
-    }
+    usuariosAlmacenados === null ? usuarios = [] : usuarios = JSON.parse(usuariosAlmacenados);
 }
+
 // vacía la lista de usuarios Almacenados
 function vaciarUsuariosLocalStorage() {
     btnVaciar.onclick = () => localStorage.removeItem('listaUsuarios');
@@ -271,12 +262,8 @@ function botonImprimir() {
 
 // se extrae usuario y correo de localStorage
 function extraerLogin() {
-
     let usuarioRegistrados = localStorage.getItem('userList');
     let arrayUser = usuarioRegistrados ? JSON.parse(usuarioRegistrados) : [];
-
-    console.log(arrayUser);
-
     if (arrayUser !== '') {
         arrayUser.forEach((username) => {
             let spanRegistros = document.createElement('p');
@@ -291,6 +278,4 @@ function extraerLogin() {
 }
 
 //inicializar el programa
-
-
 main();

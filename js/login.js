@@ -7,7 +7,6 @@ let username;
 let email;
 let password;
 let passwordTwo;
-let accessTable;
 
 // Inicio del programa
 
@@ -18,20 +17,14 @@ class User {
 		this.passwordValue = passwordValue;
 		this.passwordTwoValue = passwordTwoValue;
 	}
-
 }
 
 function loginRegister() {
 	formLogin = document.getElementById('formLogin');
-
 	username = document.getElementById('username');
 	email = document.getElementById('email');
 	password = document.getElementById('password');
 	passwordTwo = document.getElementById('passwordTwo');
-
-	accessTable = document.getElementById("accessTable");
-
-
 }
 //=========================================FUNCION LOGIN=================================================
 
@@ -96,13 +89,7 @@ function checkInputs(e) {
 	}
 
 	if (usernameValue && emailValue && passwordValue && passwordTwoValue) {
-
-		if (passwordValue !== passwordTwoValue) {
-			setErrorFor(passwordTwo, 'La contraseña no coincide');
-		} else {
-			addUserLocalStorage();
-			window.location.href = "./pages/reserva.html";
-		}
+		passwordTwoValue !== passwordTwoValue ? setErrorFor(passwordTwo, 'La contraseña no coincide') : addUserLocalStorage(), window.location.href = "./pages/reserva.html";
 	}
 }
 
@@ -114,12 +101,8 @@ function addUserLocalStorage() {
 
 function getUsersLocalStorage() {
 	let storedUsers = localStorage.getItem("userList"); // obtiene los usuarios guardados en localStorage
-	console.log(typeof storedUsers)
-	if (storedUsers !== null) {
-		login = JSON.parse(storedUsers);
-	}
+	storedUsers !== null ? login = JSON.parse(storedUsers) : login = []; // si hay usuarios guardados los guarda en el array login
 }
-
 
 // Inicio del programa
 
