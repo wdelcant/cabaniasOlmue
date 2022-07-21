@@ -362,4 +362,30 @@ footer .copy {
   margin: 1em;
 }
 
+/* imagenes de carga */
+#wrap-preload {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.712);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#wrap-preload.close {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#wrap-preload > img.gif {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
 /*# sourceMappingURL=style.css.map */

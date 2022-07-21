@@ -42,6 +42,9 @@
 </head>
 
 <body>
+    <div id="wrap-preload">
+        <img src="./assets/img/pageLoader.gif" alt="gif" class="gif">
+    </div>
     <header>
         <div class="header-blue">
             <!-- menu principal -->
@@ -149,6 +152,7 @@
 
 
     </header>
+
     <!-- contenido -->
     <!-- quienes somos? -->
     <div class="container py-4 py-xl-5" id="whois">
@@ -393,7 +397,7 @@
         class="btn-flotante animate__animated animate__fadeIn animate__slow animate__infinite animate__delay-1s"><img
             src="./assets/img/flecha.png" alt="" srcset=""></a>
 
-
+    <!-- Librerías CSS -->
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
         integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
@@ -406,10 +410,13 @@
     <script>
         AOS.init();
     </script>
+
+
+    <!-- Librerías JS -->
     <!-- Toastify -->
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <!-- Custom JS -->
-
+    <script src="./js/utils/imgLoader.js"></script>
     <script src="./js/utils/menu.js"></script>
     <script src="./js/utils/modalLogin.js"></script>
     <script src="./js/utils/errorValidation.js"></script>

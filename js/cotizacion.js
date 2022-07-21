@@ -156,6 +156,7 @@ function validarFormulario(e) {
             style: {
                 background: "linear-gradient(to right, #d6ae7b, #eacda3)",
                 color: "#ffffff",
+                border: "1px solid #ffffff",
             }
         }).showToast();
     }
