@@ -14,7 +14,7 @@ function setSuccessFor(input) { // elimina el error de los campos
 } // fin de la función setSuccessFor
 
 function isEmail(inputEmail) { // valida el correo electrónico
-	return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/.test(valor).test(inputEmail);
+	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(inputEmail);
 } // fin de la función isEmail
 
 function isRun(inputRun) { // valida el rut completo
