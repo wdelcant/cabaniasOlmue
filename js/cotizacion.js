@@ -188,13 +188,14 @@ function validarFormulario(e) {
     }
     validaEdad(edad);
 
+    // se valida ingresos totales con Sweetalert2
     if (usuarios !== '' && isLetters(nombre) && isLetters(apellido) && isLetters(apellidoMaterno) && !isRun(run) && edad > 0 && edad <= 100) {
         usuarios.push(usuario);
         formulario.reset();
         limpiarTabla();
         agregarUsuariosTabla();
         almacenarUsuariosLocalStorage();
-        const Toast = Swal.mixin({
+        const Toast = Swal.mixin({ // se agrega alerta de que se agregó correctamente
             toast: true,
             background: '#f7e6ba',
             position: 'top-end',
@@ -264,10 +265,10 @@ function obtenerUsuariosLocalStorage() {
 function renderizarListaUsuarios() {
     limpiarTabla();
 }
-// vacía la lista de usuarios Almacenados
+// vacía la lista de usuarios Almacenados con Sweetalert2
 function vaciarLogica() {
     btnVaciar.addEventListener("click", () => {
-        Swal.fire({
+        Swal.fire({ // se agrega alerta de que se vació correctamente
             title: "¿Estás seguro que quieres vaciar la lista?",
             showCancelButton: true,
             confirmButtonText: 'Sí, estoy seguro',
