@@ -42,8 +42,8 @@ function checkInputs(e) {
 	username.addEventListener('input', function () {
 		let usernameValue = username.value;
 		usernameValue === '' ? setErrorFor(username, 'El usuario no puede estar vacío') :
-			usernameValue.length < 3 ? setErrorFor(username, 'El usuario debe tener al menos 3 caracteres') :
-			usernameValue.length > 20 ? setErrorFor(username, 'El usuario debe tener menos de 20 caracteres') :
+			usernameValue.length < 3 ? setErrorFor(username, 'Debe tener al menos 3 caracteres') :
+			usernameValue.length > 20 ? setErrorFor(username, 'Debe tener menos de 20 caracteres') :
 			setSuccessFor(username);
 	});
 
@@ -57,8 +57,8 @@ function checkInputs(e) {
 	password.addEventListener('input', function () {
 		let passwordValue = password.value;
 		passwordValue === '' ? setErrorFor(password, 'La contraseña no puede estar vacía') :
-			passwordValue.length < 6 ? setErrorFor(password, 'La contraseña debe tener al menos 6 caracteres') :
-			passwordValue.length > 20 ? setErrorFor(password, 'La contraseña debe tener menos de 20 caracteres') :
+			passwordValue.length < 6 ? setErrorFor(password, 'Debe tener al menos 6 caracteres') :
+			passwordValue.length > 20 ? setErrorFor(password, 'Debe tener menos de 20 caracteres') :
 			setSuccessFor(password);
 	});
 
