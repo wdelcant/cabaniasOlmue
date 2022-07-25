@@ -62,7 +62,7 @@ function checkInputs(e) {
 	// Valida email
 	const validaEmail = () => {
 		emailValue === '' ? setErrorFor(email, 'El email no puede estar vacío') :
-			emailValue = !isEmail(emailValue) ? setErrorFor(email, 'El email no es válido') :
+			emailValue === !isEmail(emailValue) ? setErrorFor(email, 'El email no es válido') :
 			emailValue === '.' ? setErrorFor(email, 'El email no es válido') :
 			setSuccessFor(email);
 	}
