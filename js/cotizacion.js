@@ -31,8 +31,9 @@ function main() {
     obtenerUsuariosLocalStorage();
     agregarUsuariosTabla();
     extraerLogin();
-    vaciarUsuariosLocalStorage();
+    vaciarLogica();
     botonImprimir();
+
 }
 class Usuarios {
     constructor(nombre, apellido, apellidoMaterno, run, edad) {
@@ -85,80 +86,69 @@ function validarFormulario(e) {
     let edad = parseInt(inputEdad.value);
     let usuario = new Usuarios(nombre, apellido, apellidoMaterno, run, edad);
 
-    if (nombre === '') {
-        setErrorFor(inputNombre, 'El nombre no puede estar vacío');
-    } else if (!isLetters(nombre)) {
-        setErrorFor(inputNombre, 'Debes escribir el nombre');
-    } else if (nombre.length < 3) {
-        setErrorFor(inputNombre, 'Debe tener al menos 3 caracteres');
-    } else if (nombre.length > 15) {
-        setErrorFor(inputNombre, 'Debe tener menos de 15 caracteres');
-    } else {
-        setSuccessFor(inputNombre);
-    }
 
-    if (apellido === '') {
-        setErrorFor(inputApellido, 'El apellido no puede estar vacío');
-    } else if (!isLetters(apellido)) {
-        setErrorFor(inputApellido, 'Debes escribir el Apellido');
-    } else if (apellido.length < 3) {
-        setErrorFor(inputApellido, 'Debe tener al menos 3 caracteres');
-    } else if (apellido.length > 15) {
-        setErrorFor(inputApellido, 'Debe tener menos de 15 caracteres');
-    } else {
-        setSuccessFor(inputApellido);
+    const validaNombre = () => {
+        nombre === '' ? setErrorFor(inputNombre, 'El nombre no puede estar vacío') :
+            nombre = !isLetters(nombre) ? setErrorFor(inputNombre, 'Debes escribir el nombre') :
+            nombre.length < 3 ? setErrorFor(inputNombre, 'El nombre debe tener al menos 3 caracteres') :
+            nombre.length > 20 ? setErrorFor(inputNombre, 'El nombre debe tener máximo 20 caracteres') :
+            setSuccessFor(inputNombre);
     }
+    validaNombre(nombre);
 
-    if (apellidoMaterno === '') {
-        setErrorFor(inputApellidoMaterno, 'El apellido no puede estar vacío');
-    } else if (!isLetters(apellidoMaterno)) {
-        setErrorFor(inputApellidoMaterno, 'Debes escribir el Apellido');
-    } else if (apellidoMaterno.length < 3) {
-        setErrorFor(inputApellidoMaterno, 'Debe tener al menos 3 caracteres');
-    } else if (apellidoMaterno.length > 15) {
-        setErrorFor(inputApellidoMaterno, 'Debe tener menos de 15 caracteres');
-    } else {
-        setSuccessFor(inputApellidoMaterno);
+    const validaApellido = () => {
+        apellido === '' ? setErrorFor(inputApellido, 'El apellido no puede estar vacío') :
+            apellido = !isLetters(apellido) ? setErrorFor(inputApellido, 'Debes escribir el apellido') :
+            apellido.length < 3 ? setErrorFor(inputApellido, 'El apellido debe tener al menos 3 caracteres') :
+            apellido.length > 20 ? setErrorFor(inputApellido, 'El apellido debe tener máximo 20 caracteres') :
+            setSuccessFor(inputApellido);
     }
+    validaApellido(apellido);
 
-    if (run === '') {
-        setErrorFor(inputRun, 'El RUN no puede estar vacío');
-    } else if (!isRut(run)) {
-        setErrorFor(inputRun, 'El formato no es válido 11111111-1');
-    } else if (run.length < 10) {
-        setErrorFor(inputRun, 'Debe tener al menos 9 caracteres');
-    } else if (run.length > 10) {
-        setErrorFor(inputRun, 'Debe tener menos de 9 caracteres');
-    } else {
-        setSuccessFor(inputRun);
+    const validaApellidoMaterno = () => {
+        apellidoMaterno === '' ? setErrorFor(inputApellidoMaterno, 'El apellido materno no puede estar vacío') :
+            apellidoMaterno = !isLetters(apellidoMaterno) ? setErrorFor(inputApellidoMaterno, 'Debes escribir el apellido materno') :
+            apellidoMaterno.length < 3 ? setErrorFor(inputApellidoMaterno, 'El apellido materno debe tener al menos 3 caracteres') :
+            apellidoMaterno.length > 20 ? setErrorFor(inputApellidoMaterno, 'El apellido materno debe tener máximo 20 caracteres') :
+            setSuccessFor(inputApellidoMaterno);
     }
+    validaApellidoMaterno(apellidoMaterno);
 
-    if (edad === '') {
-        setErrorFor(inputEdad, 'La edad no puede estar vacía');
-    } else if (edad > 100 || edad <= 0) {
-        setErrorFor(inputEdad, 'Debes escribir la edad');
-    } else {
-        setSuccessFor(inputEdad);
+    const validaRun = () => {
+        run === '' ? setErrorFor(inputRun, 'El RUN no puede estar vacío') :
+            run = !isRun(run) ? setErrorFor(inputRun, 'Debes escribir el run') :
+            run.length < 10 ? setErrorFor(inputRun, 'El run debe tener al menos 10 caracteres') :
+            run.length > 10 ? setErrorFor(inputRun, 'El run debe tener máximo 10 caracteres') :
+            setSuccessFor(inputRun);
     }
+    validaRun(run);
 
-    if (usuarios !== '' && isLetters(nombre) && isLetters(apellido) && isLetters(apellidoMaterno) && isRut(run) && edad > 0 && edad <= 100) {
+    const validaEdad = () => {
+        edad === '' ? setErrorFor(inputEdad, 'La edad no puede estar vacía') :
+            edad <= 0 ? setErrorFor(inputEdad, 'La edad debe ser mayor a 0') :
+            edad > 100 ? setErrorFor(inputEdad, 'La edad debe ser menor a 100') :
+            setSuccessFor(inputEdad);
+    }
+    validaEdad(edad);
+
+    if (usuarios !== '' && isLetters(nombre) && isLetters(apellido) && isLetters(apellidoMaterno) && !isRun(run) && edad > 0 && edad <= 100) {
         usuarios.push(usuario);
         formulario.reset();
         limpiarTabla();
         agregarUsuariosTabla();
         almacenarUsuariosLocalStorage();
-        Toastify({
-            text: "Cliente agregado correctamente",
-            className: "info",
-            duration: 2500,
-            gravity: "top",
-            position: "right",
-            style: {
-                background: "linear-gradient(to right, #d6ae7b, #eacda3)",
-                color: "#ffffff",
-                border: "1px solid #ffffff",
-            }
-        }).showToast();
+        const Toast = Swal.mixin({
+            toast: true,
+            background: '#f7e6ba',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+        })
+        Toast.fire({
+            icon: 'success',
+            title: 'Agregado correctamente'
+        })
     }
 }
 
@@ -170,46 +160,46 @@ function validarIngresos(e) {
     let total = adults + children;
     let ingreso = new Ingresos(cabins, adults, children, total);
 
-    if (adults < 1) {
-        setErrorFor(inputAdults, 'No se pueden arrendar cabañas sin adultos');
-    } else if (cabins <= 1 && total >= 7) {
-        setErrorFor(inputAdults, 'El tope de personas es 6 por cabaña');
-    } else {
-        setSuccessFor(inputAdults);
+    const validaCabins = () => {
+        cabins === '' ? setErrorFor(inputCabins, 'El número de cabins no puede estar vacío') :
+            total >= 7 && cabins === 1 ? setErrorFor(inputCabins, 'El máximo de personas es 6, si desea más debe arrendar 2 cabañas') :
+            total >= 13 && cabins === 2 ? setErrorFor(inputCabins, 'El máximo de personas es 12, si desea más debe contactar a la administración.') :
+            setSuccessFor(inputCabins);
     }
-    if (children === '') {
-        setErrorFor(inputChildren, 'No puede estar vacía');
-    } else if (cabins <= 1 && total >= 7) {
-        setErrorFor(inputChildren, 'El tope de personas es 6 por cabaña');
-    } else if (adults === 0 && children > adults) {
-        setErrorFor(inputChildren, 'No puede ser mayor a los adultos');
-    } else {
-        setSuccessFor(inputChildren);
+    validaCabins(cabins);
+
+    const validaAdults = () => {
+        adults < 1 ? setErrorFor(inputAdults, 'El número de adultos no puede estar vacío') :
+            total >= 7 && cabins <= 1 ? setErrorFor(inputAdults, 'No se puede ingresar más adultos, supera el máximo') :
+            total >= 13 && cabins <= 2 ? setErrorFor(inputAdults, 'No se puede ingresar más adultos, super el máximo.') :
+            setSuccessFor(inputAdults);
     }
-    if (cabins === '') {
-        setErrorFor(inputCabins, 'No puede estar vacía');
-    } else if (total >= 7 && cabins === 1) {
-        setErrorFor(inputCabins, 'El máximo de personas es 6, si desea más debe arrendar 2 cabañas.');
-    } else if (total >= 13 && cabins === 2) {
-        setErrorFor(inputCabins, 'El máximo de personas es 12, si desea más debe contactar a la administración.');
-    } else {
-        setSuccessFor(inputCabins);
+    validaAdults(adults);
+
+    const validaChildren = () => {
+        children === '' ? setErrorFor(inputChildren, 'El número de cabins no puede estar vacío') :
+            total >= 7 && cabins <= 1 ? setErrorFor(inputChildren, 'No se puede ingresar más adultos, supera el máximo') :
+            total >= 13 && cabins <= 2 ? setErrorFor(inputChildren, 'No se puede ingresar más adultos, super el máximo.') :
+            setSuccessFor(inputChildren);
     }
+    validaChildren(children);
+
     if (total !== 0 && total <= 12) {
         ingresos.push(ingreso);
         agregarTotalDetalles();
-        Toastify({
-            text: "Ahora agrega los detalles de los ingresos",
-            className: "info",
-            duration: 2500,
-            gravity: "top",
-            position: "right",
-            style: {
-                background: "linear-gradient(to right, #d6ae7b, #eacda3)",
-                color: "#ffffff",
-                border: "1px solid #ffffff",
-            }
-        }).showToast();
+        const Toast = Swal.mixin({
+            toast: true,
+            background: '#f7e6ba',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Total agregado correctamente'
+        })
     }
 }
 
@@ -254,14 +244,38 @@ function obtenerUsuariosLocalStorage() {
     usuariosAlmacenados === null ? usuarios = [] : usuarios = JSON.parse(usuariosAlmacenados);
 }
 
-// vacía la lista de usuarios Almacenados
-function vaciarUsuariosLocalStorage() {
-    btnVaciar.onclick = () => localStorage.removeItem('listaUsuarios');
+
+function renderizarListaUsuarios() {
+    limpiarTabla();
 }
+// vacía la lista de usuarios Almacenados
+function vaciarLogica() {
+    btnVaciar.addEventListener("click", () => {
+        Swal.fire({
+            title: "¿Estás que quieres borrar la lista?",
+            showCancelButton: true,
+            confirmButtonText: 'Sí, estoy seguro',
+            denyButtonText: `Cancelar`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                Swal.fire('Lista vacía', '', 'success')
+                vaciarUsuariosLocalStorage();
+            }
+        })
+    });
+}
+
+function vaciarUsuariosLocalStorage() {
+    usuarios = [];
+    renderizarListaUsuarios();
+    localStorage.removeItem('listaUsuarios');
+
+} // vacía la lista de usuarios Almacenados
 
 function botonImprimir() {
     btnImpr.onclick = () => window.print();
-}
+} // imprime la tabla de usuarios
 
 // se extrae usuario y correo de localStorage
 function extraerLogin() {

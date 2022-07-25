@@ -17,7 +17,7 @@ function isEmail(email) { // valida el correo electrónico
 	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 } // fin de la función isEmail
 
-function isRut(inputRun) { // valida el rut completo
+function isRun(inputRun) { // valida el rut completo
 	return /^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test(inputRun);
 } // fin de la función isRut
 

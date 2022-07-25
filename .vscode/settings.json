@@ -1,4 +1,13 @@
 {
   "vscode-edge-devtools.browserFlavor": "Canary",
-  "cSpell.words": ["", "cabaniasolmue", "Olmué", "Toastify"]
+  "cSpell.words": [
+    "",
+    "boton",
+    "cabaniasolmue",
+    "Logica",
+    "Olmué",
+    "renderizar",
+    "Swal",
+    "Toastify"
+  ]
 }
