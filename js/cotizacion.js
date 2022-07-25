@@ -20,18 +20,16 @@ let inputAdults;
 let inputChildren;
 let listaDetalles;
 let ingreso;
-let oneCabin = 60000;
-let twoCabin = 120000;
 let totalAPagar;
 
 // sección de validaciones de funciones
 function main() {
     inicializarElementos();
     inicializarEventos();
+    extraerLogin();
     agregarTotalDetalles();
     obtenerUsuariosLocalStorage();
     agregarUsuariosTabla();
-    extraerLogin();
     vaciarLogica();
     botonImprimir();
 
@@ -76,11 +74,66 @@ function inicializarElementos() { // inicializa los elementos
     totalAPagar = document.getElementById('totalAPagar');
 }
 
+
+// Se inicializa los botones de los formularios
 function inicializarEventos() {
     formulario.onsubmit = (e) => validarFormulario(e);
     formSelect.onsubmit = (e) => validarIngresos(e);
 }
 
+// Función que valida la cantidad de cabañas arrendar y personas que ingresan
+function validarIngresos(e) {
+    e.preventDefault();
+    let cabins = parseInt(inputCabins.value);
+    let adults = parseInt(inputAdults.value);
+    let children = parseInt(inputChildren.value);
+    let total = adults + children;
+    let ingreso = new Ingresos(cabins, adults, children, total);
+
+    const validaCabins = () => {
+        cabins === '' ? setErrorFor(inputCabins, 'El número de cabins no puede estar vacío') :
+            total >= 7 && cabins === 1 ? setErrorFor(inputCabins, 'El máximo de personas es 6, si desea más debe arrendar 2 cabañas') :
+            total >= 13 && cabins === 2 ? setErrorFor(inputCabins, 'El máximo de personas es 12, si desea más debe contactar a la administración.') :
+            setSuccessFor(inputCabins);
+    }
+    validaCabins(cabins);
+
+    const validaAdults = () => {
+        adults < 1 ? setErrorFor(inputAdults, 'El número de adultos no puede estar vacío') :
+            total >= 7 && cabins <= 1 ? setErrorFor(inputAdults, 'No se puede ingresar más adultos, supera el máximo') :
+            total >= 13 && cabins <= 2 ? setErrorFor(inputAdults, 'No se puede ingresar más adultos, super el máximo.') :
+            setSuccessFor(inputAdults);
+    }
+    validaAdults(adults);
+
+    const validaChildren = () => {
+        children === '' ? setErrorFor(inputChildren, 'El número de cabins no puede estar vacío') :
+            total >= 7 && cabins <= 1 ? setErrorFor(inputChildren, 'No se puede ingresar más adultos, supera el máximo') :
+            total >= 13 && cabins <= 2 ? setErrorFor(inputChildren, 'No se puede ingresar más adultos, super el máximo.') :
+            setSuccessFor(inputChildren);
+    }
+    validaChildren(children);
+
+    if (total !== 0 && total <= 12) {
+        ingresos.push(ingreso);
+        agregarTotalDetalles();
+        AgregarTotalDinero();
+        const Toast = Swal.mixin({
+            toast: true,
+            background: '#f7e6ba',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+        })
+        Toast.fire({
+            icon: 'success',
+            title: 'Total agregado correctamente'
+        })
+    }
+}
+
+// función principal que valida los inputs de las personas ingresadas
 function validarFormulario(e) {
     e.preventDefault();
     let nombre = inputNombre.value
@@ -156,57 +209,6 @@ function validarFormulario(e) {
     }
 }
 
-function validarIngresos(e) {
-    e.preventDefault();
-    let cabins = parseInt(inputCabins.value);
-    let adults = parseInt(inputAdults.value);
-    let children = parseInt(inputChildren.value);
-    let total = adults + children;
-    let ingreso = new Ingresos(cabins, adults, children, total);
-
-    const validaCabins = () => {
-        cabins === '' ? setErrorFor(inputCabins, 'El número de cabins no puede estar vacío') :
-            total >= 7 && cabins === 1 ? setErrorFor(inputCabins, 'El máximo de personas es 6, si desea más debe arrendar 2 cabañas') :
-            total >= 13 && cabins === 2 ? setErrorFor(inputCabins, 'El máximo de personas es 12, si desea más debe contactar a la administración.') :
-            setSuccessFor(inputCabins);
-    }
-    validaCabins(cabins);
-
-    const validaAdults = () => {
-        adults < 1 ? setErrorFor(inputAdults, 'El número de adultos no puede estar vacío') :
-            total >= 7 && cabins <= 1 ? setErrorFor(inputAdults, 'No se puede ingresar más adultos, supera el máximo') :
-            total >= 13 && cabins <= 2 ? setErrorFor(inputAdults, 'No se puede ingresar más adultos, super el máximo.') :
-            setSuccessFor(inputAdults);
-    }
-    validaAdults(adults);
-
-    const validaChildren = () => {
-        children === '' ? setErrorFor(inputChildren, 'El número de cabins no puede estar vacío') :
-            total >= 7 && cabins <= 1 ? setErrorFor(inputChildren, 'No se puede ingresar más adultos, supera el máximo') :
-            total >= 13 && cabins <= 2 ? setErrorFor(inputChildren, 'No se puede ingresar más adultos, super el máximo.') :
-            setSuccessFor(inputChildren);
-    }
-    validaChildren(children);
-
-    if (total !== 0 && total <= 12) {
-        ingresos.push(ingreso);
-        agregarTotalDetalles();
-        AgregarTotalDinero();
-        const Toast = Swal.mixin({
-            toast: true,
-            background: '#f7e6ba',
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 2000,
-            timerProgressBar: true,
-        })
-        Toast.fire({
-            icon: 'success',
-            title: 'Total agregado correctamente'
-        })
-    }
-}
-
 function agregarTotalDetalles() { // Agrega el total de los ingresos a la tabla
     ingresos.forEach((ingreso) => {
         let Detalle = document.createElement('ul');
@@ -220,7 +222,18 @@ function agregarTotalDetalles() { // Agrega el total de los ingresos a la tabla
     });
 }
 
-function agregarUsuariosTabla() { // agrega los usuarios a la cotización
+const AgregarTotalDinero = () => { // Agrega el precio total del a cotización
+    ingresos.forEach((ingreso) => {
+        let spanTotal = document.createElement('p');
+        totalP = 60000 * ingreso.cabins
+        spanTotal.innerHTML = `
+        <span><b>Total a pagar: $${totalP}</b></span>
+        `;
+        totalAPagar.appendChild(spanTotal);
+    });
+}
+
+function agregarUsuariosTabla() { // Agrega los usuarios a la cotización
     usuarios.forEach((usuario) => {
         let filaTabla = document.createElement('tr');
         filaTabla.innerHTML = `
@@ -230,17 +243,6 @@ function agregarUsuariosTabla() { // agrega los usuarios a la cotización
             <td>${usuario.run}</td>
             <td>${usuario.edad}</td>`;
         tabla.tBodies[0].append(filaTabla);
-    });
-}
-
-const AgregarTotalDinero = () => { // agrega el precio total del a cotización
-    ingresos.forEach((ingreso) => {
-        let spanTotal = document.createElement('p');
-        totalP = 60000 * ingreso.cabins
-        spanTotal.innerHTML = `
-        <span><b>Total a pagar: $${totalP}</b></span>
-        `;
-        totalAPagar.appendChild(spanTotal);
     });
 }
 
