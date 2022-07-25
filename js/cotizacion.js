@@ -1,7 +1,7 @@
 // declaramos las variables a ocupar
 
 let usuarios = []; // guarda usuarios que accederán al sistema
-let ingresos = []; // guarda ingresos
+let ingresos = []; // guarda ingresos totales
 
 let formulario;
 let inputNombre;
@@ -22,6 +22,7 @@ let listaDetalles;
 let ingreso;
 let oneCabin = 60000;
 let twoCabin = 120000;
+let totalAPagar;
 
 // sección de validaciones de funciones
 function main() {
@@ -35,6 +36,7 @@ function main() {
     botonImprimir();
 
 }
+// Aplicamos constructores a las clases
 class Usuarios {
     constructor(nombre, apellido, apellidoMaterno, run, edad) {
         this.nombre = nombre.toUpperCase();
@@ -53,6 +55,7 @@ class Ingresos {
     }
 }
 
+// sección de DOM
 function inicializarElementos() { // inicializa los elementos
     formulario = document.getElementById('formulario');
     inputNombre = document.getElementById('inputNombre');
@@ -70,6 +73,7 @@ function inicializarElementos() { // inicializa los elementos
     inputChildren = document.getElementById('inputChildren');
     listaDetalles = document.getElementById('listaDetalles');
     btnAdd = document.getElementById('btnAdd');
+    totalAPagar = document.getElementById('totalAPagar');
 }
 
 function inicializarEventos() {
@@ -187,6 +191,7 @@ function validarIngresos(e) {
     if (total !== 0 && total <= 12) {
         ingresos.push(ingreso);
         agregarTotalDetalles();
+        AgregarTotalDinero();
         const Toast = Swal.mixin({
             toast: true,
             background: '#f7e6ba',
@@ -195,7 +200,6 @@ function validarIngresos(e) {
             timer: 2000,
             timerProgressBar: true,
         })
-
         Toast.fire({
             icon: 'success',
             title: 'Total agregado correctamente'
@@ -203,7 +207,7 @@ function validarIngresos(e) {
     }
 }
 
-function agregarTotalDetalles() {
+function agregarTotalDetalles() { // Agrega el total de los ingresos a la tabla
     ingresos.forEach((ingreso) => {
         let Detalle = document.createElement('ul');
         Detalle.innerHTML = `
@@ -229,6 +233,17 @@ function agregarUsuariosTabla() { // agrega los usuarios a la cotización
     });
 }
 
+const AgregarTotalDinero = () => { // agrega el precio total del a cotización
+    ingresos.forEach((ingreso) => {
+        let spanTotal = document.createElement('p');
+        totalP = 60000 * ingreso.cabins
+        spanTotal.innerHTML = `
+        <span><b>Total a pagar: $${totalP}</b></span>
+        `;
+        totalAPagar.appendChild(spanTotal);
+    });
+}
+
 function limpiarTabla() {
     while (tabla.rows.length > 1) {
         tabla.deleteRow(1);
@@ -244,7 +259,6 @@ function obtenerUsuariosLocalStorage() {
     usuariosAlmacenados === null ? usuarios = [] : usuarios = JSON.parse(usuariosAlmacenados);
 }
 
-
 function renderizarListaUsuarios() {
     limpiarTabla();
 }
@@ -252,12 +266,11 @@ function renderizarListaUsuarios() {
 function vaciarLogica() {
     btnVaciar.addEventListener("click", () => {
         Swal.fire({
-            title: "¿Estás que quieres borrar la lista?",
+            title: "¿Estás seguro que quieres vaciar la lista?",
             showCancelButton: true,
             confirmButtonText: 'Sí, estoy seguro',
             denyButtonText: `Cancelar`,
         }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
                 Swal.fire('Lista vacía', '', 'success')
                 vaciarUsuariosLocalStorage();
@@ -293,6 +306,5 @@ function extraerLogin() {
         });
     }
 }
-
 //inicializar el programa
 main();
