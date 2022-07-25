@@ -57,15 +57,16 @@ function checkInputs(e) {
 			usernameValue.length > 20 ? setErrorFor(username, 'El usuario debe tener menos de 20 caracteres') :
 			setSuccessFor(username);
 	}
-	validaUsername();
+	validaUsername(usernameValue);
 
 	// Valida email
 	const validaEmail = () => {
 		emailValue === '' ? setErrorFor(email, 'El email no puede estar vacío') :
 			emailValue = !isEmail(emailValue) ? setErrorFor(email, 'El email no es válido') :
+			emailValue === '.' ? setErrorFor(email, 'El email no es válido') :
 			setSuccessFor(email);
 	}
-	validaEmail();
+	validaEmail(emailValue);
 
 	// Valida password
 	const validaPassword = () => {
@@ -74,15 +75,15 @@ function checkInputs(e) {
 			passwordValue.length > 20 ? setErrorFor(password, 'La contraseña debe tener menos de 20 caracteres') :
 			setSuccessFor(password);
 	}
-	validaPassword();
+	validaPassword(passwordValue);
 
 	// valida la contraseña coincidente
-	function validaPasswordTwo() {
+	const validaPasswordTwo = () => {
 		passwordTwoValue === '' ? setErrorFor(passwordTwo, 'La contraseña no puede estar vacía') :
 			passwordTwoValue !== passwordValue ? setErrorFor(passwordTwo, 'Las contraseñas no coinciden') :
 			setSuccessFor(passwordTwo);
 	}
-	validaPasswordTwo();
+	validaPasswordTwo(passwordTwoValue);
 
 	if (usernameValue && emailValue && passwordValue && passwordTwoValue) {
 		passwordTwoValue !== passwordTwoValue ? setErrorFor(passwordTwo, 'La contraseña no coincide') : addUserLocalStorage(), window.location.href = "./pages/reserva.html";
