@@ -1,15 +1,18 @@
+@use 'variables';
+@use 'mixins';
+
 .titulosslider {
-  color: rgb(255, 220, 131);
+  color: variables.$colorPrimary;
   text-shadow: 0px 0px 6px, 5px 5px 5px var(--bs-dark);
 }
 .textogeneral {
-  color: rgb(255, 255, 255);
+  color: #ffffff;
   text-shadow: 0px 0px 6px, 5px 5px 5px var(--bs-dark);
   font-size: 1.2em;
 }
 .header-blue {
-  background: linear-gradient(black, hsla(0, 0%, 100%, 0.16) 50%),
-    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+  background: linear-gradient(#000000, #ffffff29 50%),
+    linear-gradient(#0000004d, #0000004d),
     url(../assets/img/bannertop.jpg) center / cover space;
   height: 980px;
   filter: blur(0px);
@@ -19,7 +22,7 @@
   font-size: 2em;
 }
 .header-blue .logo {
-  color: rgb(255, 220, 131);
+  color: variables.$colorPrimary;
 }
 
 .header-blue .eslogan-div {
@@ -27,34 +30,35 @@
 }
 
 .header-blue .eslogan {
-  color: rgb(255, 255, 255);
+  color: #ffffff;
   text-shadow: 0px 0px 6px, 5px 5px 5px var(--bs-dark);
   font-size: 3rem;
   text-align: center;
 }
 
 .header-blue .eslogan .logo {
-  color: rgb(255, 220, 131);
+  color: variables.$colorPrimary;
 }
 
 .header-blue .boton-reserva {
   color: var(--bs-white);
-  text-shadow: 2px 1px 2px #000000;
+  text-shadow: 2px 1px 2px variables.$colorBlack;
   font-size: 2em;
   font-weight: bold;
   text-align: center;
   width: 8em;
   height: 2em;
   border-radius: 1em;
-  background: rgb(255, 220, 131);
-  box-shadow: 0px 0px 10px, 5px 5px 5px #000000;
+  background: variables.$colorPrimary;
+  box-shadow: 0px 0px 10px, 5px 5px 5px variables.$colorBlack;
   filter: blur(0px);
   opacity: 1;
 }
+
 .header-blue .boton-reserva:hover {
-  color: #000000;
+  color: variables.$colorBlack;
   text-shadow: 0.1em 0.05em 0.1em #ffffff;
-  background: linear-gradient(#ffdc83, #a99052), #ffdc83;
+  background: linear-gradient(variables.$colorPrimary, variables.$colorSecondary), variables.$colorPrimary;
   filter: blur(0px);
   box-shadow: 0px 0px 10px, 5px 5px 5px var(--bs-dark);
   opacity: 1;
@@ -69,32 +73,32 @@
 }
 
 .nav-flotante .boton-reserva-nav {
-  background: rgba(169, 155, 122, 0);
-  color: rgb(0, 0, 0);
+  background: #a89b7a00;
+  color: variables.$colorBlack;
 }
 
 .nav-flotante .logo {
-  color: rgb(255, 220, 131);
+  color: variables.$colorPrimary;
 }
 
 .reserva {
-  background: linear-gradient(black, hsla(0, 0%, 100%, 0.16) 50%),
-    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+  background: linear-gradient(variables.$colorBlack, #ffffff29 50%),
+    linear-gradient(#0000004d, #0000004d),
     url(../assets/img/foto8.jpeg) center / cover space;
   height: 980px;
   filter: blur(0px);
 }
 
 .eventos {
-  background: linear-gradient(black, hsla(0, 0%, 100%, 0.16) 50%),
-    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+  background: linear-gradient(#000000, #ffffff29 50%),
+    linear-gradient(#0000004d, #0000004d),
     url(../assets/img/foto1.jpg) center / cover space;
   height: 980px;
   filter: blur(0px);
 }
 
 .eventos-fondos {
-  background: rgba(0, 0, 0, 0.584);
+  background: #00000095;
   padding: 3em;
 }
 
@@ -103,17 +107,17 @@
 }
 
 .contacto {
-  background: linear-gradient(rgb(0, 0, 0), hwb(0 100% 0% / 0.16) 50%),
-    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+  background: linear-gradient(variables.$colorBlack, #ffffff29 50%),
+    linear-gradient(#0000004d, #0000004d),
     url(../assets/img/foto13.jpeg) center / cover space;
   height: 980px;
   filter: blur(0px);
 }
 
 .btn-enviar {
-  background: rgb(255, 220, 131);
-  color: #000000;
-  border: 1px solid #000000;
+  background: variables.$colorPrimary;
+  color: variables.$colorBlack;
+  border: 1px solid variables.$colorBlack;
   border-radius: 1em;
   padding: 0.5em 1em;
   font-size: 1em;
@@ -122,9 +126,9 @@
   width: 8em;
 }
 .btn-enviar:hover {
-  background: linear-gradient(#ffdc83, #a99052), #ffdc83;
-  color: #000000;
-  border: 1px solid #000000;
+  background: linear-gradient(variables.$colorPrimary, variables.$colorSecondary), variables.$colorPrimary;
+  color: variables.$colorBlack;
+  border: 1px solid variables.$colorBlack;
 }
 
 .testimonios {
@@ -132,26 +136,26 @@
 }
 
 .testimonios i {
-  color: #ffdc83;
+  color: variables.$colorPrimary;
   font-size: 1.6em;
   padding: 0.1em;
   text-shadow: 0.05em 0.05em 0.05em #00000080;
 }
 
 footer {
-  color: rgb(255, 255, 255);
+  color: #ffffff;
 }
 
 footer .mail {
-  color: #ffdc83;
+  color: variables.$colorPrimary;
 }
 
 footer .copy {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: #0000000d;
 }
 
 .redes i {
-  color: #ffdc83;
+  color: variables.$colorPrimary;
   font-size: 1.6em;
 }
 
@@ -176,7 +180,7 @@ footer .copy {
   }
   .btn-flotante:hover {
     transform: translateY(-7px);
-    color: white;
+    color: #ffffff;
   }
   .btn-flotante img {
     width: 10em;
@@ -200,18 +204,17 @@ footer .copy {
 /* The Modal (background) */
 .modal {
   
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none; 
+  position: fixed; 
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%; 
+  height: 100%; 
+  overflow: auto;
+  background-color: #000000; 
+  background-color: #00000066; 
 }
-
 
 .modal-header {
   display: flex;
@@ -224,24 +227,19 @@ footer .copy {
   font-weight: bold;
 }
 
-
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-
-
-  margin: 2em auto; /* 15% from the top and centered */
+  margin: 2em auto; 
   padding: 0.8em;
-  width: 280px; /* Could be more or less, depending on screen size */
-  
+  width: 280px; 
 }
 
 .modalResumen {
   background-color: #fefefe;
-  margin: 2em auto; /* 15% from the top and centered */
+  margin: 2em auto; 
   padding: 0.8em;
-  width: auto; /* Could be more or less, depending on screen size */
-  
+  width: auto;
 }
 
 .formLogin-style {
@@ -263,11 +261,9 @@ footer .copy {
 }
 
 .headerLogin h2 {
-
   align-items: center;
   text-align: center;
 	margin: 0;
-  
 }
 
 .headerLogin span {
@@ -277,9 +273,7 @@ footer .copy {
   font-weight: bold;
   justify-content: center;
   font-size: 1em;
-
 }
-
 
 .form-control {
   margin-bottom: 0.7em;
@@ -307,11 +301,11 @@ footer .copy {
 }
 
 .form-control.success input {
-  border-color: #2ecc71;
+  border-color: variables.$success;
 }
 
 .form-control.error input {
-  border-color: #e74c4c;
+  border-color: variables.$error;
 }
 
 .form-control i {
@@ -324,16 +318,16 @@ footer .copy {
 
 .form-control.success i.fa-check-circle {
   visibility: visible;
-  color: #2ecc71;
+  color: variables.$success;
 }
 
 .form-control.error i.fa-exclamation-circle {
   visibility: visible;
-  color: #e74c4c;
+  color: variables.$error;
 }
 
 .form-control small {
-  color: #e74c3c;
+  color: variables.$error;
   position: absolute;
   bottom: 0;
   left: 8px;
@@ -345,16 +339,15 @@ footer .copy {
 }
 
 .formLogin-style button {
-  background-color: #ffdc83;
+  background-color: variables.$colorPrimary;
   border: none;
   border-radius: 0.5em;
-  color: #000000;
+  color: variables.$colorBlack;
   font-size: 1em;
   font-weight: bold;
   padding: 0.5em 1em;
   text-align: center;
   width: 100%;
-
 }
 
 .close {
@@ -364,7 +357,7 @@ footer .copy {
 
 .close:hover,
 .close:focus {
-  color: black;
+  color: #000000;
   text-decoration: none;
   cursor: pointer;
 }
@@ -382,7 +375,6 @@ footer .copy {
 
 /* imagenes de carga */
 
-
 #wrap-preload{
   position: fixed;
   z-index: 10;
@@ -390,7 +382,7 @@ footer .copy {
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(255, 255, 255, 0.712);
+  background: #ffffffb6;
   opacity: 1;
   visibility: visible;
   transition: opacity .5s ease, visibility .5s ease;
