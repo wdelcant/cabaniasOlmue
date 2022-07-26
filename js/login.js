@@ -71,6 +71,7 @@ function checkInputs(e) {
 
 	if (username.value === '' || email.value === '' || password.value === '' || passwordTwo.value === '') {
 		Swal.fire({
+			type: 'error',
 			icon: 'error',
 			title: 'Ups...',
 			text: 'Todos los campos son obligatorios!',

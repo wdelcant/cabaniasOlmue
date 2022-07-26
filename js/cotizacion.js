@@ -114,7 +114,11 @@ function validarIngresos(e) {
     }
     validaChildren(children);
 
-    if (total !== 0 && total <= 12) {
+    if (total === 0 || total >= 7 && cabins === 1) {
+        alertError();
+    } else if (total >= 13 && cabins === 2) {
+        alertError();
+    } else {
         ingresos.push(ingreso);
         agregarTotalDetalles();
         AgregarTotalDinero();
@@ -207,6 +211,8 @@ function validarFormulario(e) {
             icon: 'success',
             title: 'Agregado correctamente'
         })
+    } else {
+        alertError();
     }
 }
 

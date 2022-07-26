@@ -26,3 +26,18 @@ function isRun(inputRun) { // valida el rut completo
 function isLetters(inputLetters) { // valida las letras
 	return /^[a-zA-Z\s]+$/.test(inputLetters);
 } // fin de la función isLetters
+
+function alertError() { // muestra un mensaje de error
+	const Toast = Swal.mixin({
+		toast: true,
+		background: '#f7e6ba',
+		position: 'top-end',
+		showConfirmButton: false,
+		timer: 2000,
+		timerProgressBar: true,
+	})
+	Toast.fire({
+		icon: 'error',
+		title: 'Por favor, verifique los datos ingresados'
+	})
+} // fin de la función alertError
