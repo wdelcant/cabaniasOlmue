@@ -16,7 +16,8 @@ function main() {
 }
 
 class User {
-	constructor(usernameValue, emailValue, passwordValue, passwordTwoValue) {
+	constructor(ID, usernameValue, emailValue, passwordValue, passwordTwoValue) {
+		this.ID = ID;
 		this.usernameValue = usernameValue;
 		this.emailValue = emailValue;
 		this.passwordValue = passwordValue;
@@ -39,6 +40,7 @@ function initializeEvents() {
 
 function checkInputs(e) {
 	e.preventDefault();
+
 
 	username.addEventListener('input', function () {
 		let usernameValue = username.value;
@@ -81,7 +83,12 @@ function checkInputs(e) {
 			text: 'Todos los campos son obligatorios!',
 		})
 	} else {
-		let userToRegister = new User(username.value, email.value, password.value, passwordTwo.value);
+		let ID = Math.floor(Math.random() * 1000000);
+		while (ID < login.length) {
+			ID++;
+		}
+
+		let userToRegister = new User(ID, username.value, email.value, password.value, passwordTwo.value);
 		login.push(userToRegister);
 		addUserLocalStorage()
 		window.location.href = "./pages/reserva.html";

@@ -330,7 +330,7 @@ function vaciarUsuariosLocalStorage() {
 
 function printDiv() {
     let divContents = document.getElementById("imprimir").innerHTML;
-    let a = window.open();
+    let a = window.open('', '', 'height=900, width=900');
     a.document.write(divContents);
     a.document.close();
     a.print();
@@ -347,16 +347,18 @@ function botonImprimir() {
         }).then((result) => {
             if (result.isConfirmed) {
                 printDiv();
+                let boleta = Math.floor(Math.random() * 1000000);
                 Swal.fire({
-                    title: 'Cotización finalizada',
+                    title: 'COTIZACIÓN N' + boleta,
                     text: '¡Gracias por usar nuestros servicios!',
                     icon: 'success',
                 })
                 setTimeout(() => {
+                    window.close();
                     vaciarUsuariosLocalStorage();
                     localStorage.removeItem('userList');
                     window.location.href = "../index.html";
-                }, 2500); // se agrega un tiempo de espera para que se imprima
+                }, 6000); // se agrega un tiempo de espera para que se imprima
             }
         })
     });
