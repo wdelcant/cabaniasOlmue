@@ -172,21 +172,33 @@
                 </div>
                 <div class="col-md-6 col-xl-4">
                     <div>
-                        <form class="p-3 p-xl-4" method="post">
+                        <form method="POST" class="p-3 p-xl-4"
+                            action="https://formsubmit.co/5e36ccd515272d990de7549f4ddd264a"
+                            enctype="multipart/form-data">
                             <h4>Contáctenos</h4>
                             <p class="text-muted">Si tienes consultas o dudas, no dudes en contactarnos.</p>
-                            <div class="mb-3"><label class="form-label" for="name">Nombre</label><input id="name"
-                                    class="form-control" type="text" name="name" /></div>
-                            <div class="mb-3"><label class="form-label" for="email">Correo</label><input id="email"
-                                    class="form-control" type="email" name="email" /></div>
+                            <div class="mb-3"><label class="form-label" for="name">Nombre Completo</label><input
+                                    class="form-control" type="text" name="Nombre" /></div>
+                            <div class="mb-3"><label class="form-label" for="email">Correo</label><input
+                                    class="form-control" type="email" name="Correo" /></div>
+                            <div class="mb-3"><label class="form-label" for="email">Teléfono</label><input
+                                    class="form-control" type="number" name="Telefono" /></div>
                             <div class="mb-3"><label class="form-label" for="message">Mensaje</label><textarea
-                                    id="message" class="form-control" name="message" rows="6"></textarea></div>
+                                    class="form-control" name="Asunto" rows="6"></textarea></div>
+                            <div><input type="file" name="Imagen" accept="image/png, image/jpeg"></div>
                             <div class="mb-3"><button class="btn btn-primary btn-enviar" type="submit">Enviar </button>
                             </div>
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_next" value="http://127.0.0.1:5500" />
+                            <input type="hidden" name="_subject" value="Tienes un nuevo contacto!">
+                            <input type="text" name="_honey" style="display:none">
                         </form>
                     </div>
                 </div>
             </div>
+        </div>
+        </div>
         </div>
     </section>
 
@@ -195,7 +207,7 @@
     <!-- Footer -->
     <footer class="text-center text-lg-start bg-dark text-white ">
         <section class=" justify-content-center justify-content-lg-between p-4 border-bottom">
-            <form action="">
+            <form>
                 <div class="row d-flex justify-content-center">
                     <div class="col-auto">
                         <p class="pt-2">
@@ -204,8 +216,7 @@
                     </div>
                     <div class="col-md-5 col-12">
                         <div class="form-outline form-white mb-4">
-                            <input type="email" id="form5Example21" class="form-control"
-                                placeholder="Ingrese su correo electrónico" />
+                            <input type="email" class="form-control" placeholder="Ingrese su correo electrónico" />
                         </div>
                     </div>
                     <div class="col-auto">
@@ -290,6 +301,7 @@
         class="btn-flotante animate__animated animate__fadeIn animate__slow animate__infinite animate__delay-1s"><img
             src="../assets/img/flecha.png" alt="" srcset=""></a>
 
+    <!-- Librerías CSS -->
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
         integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
@@ -302,10 +314,14 @@
     <script>
         AOS.init();
     </script>
-    <!-- Custom JS -->
-    <script src="../js/menu.js"></script>
-    <script src="../js/login.js"></script>
 
+
+    <!-- Librerías JS -->
+    <!-- sweetalert2.min.js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.24/dist/sweetalert2.all.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../js/utils/imgLoader.js"></script>
+    <script src="../js/utils/menu.js"></script>
 </body>
 
 </html>
