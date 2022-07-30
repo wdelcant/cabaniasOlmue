@@ -39,6 +39,13 @@
   color: #ffdc83;
 }
 
+.eslogan__reservar {
+  text-decoration: none;
+}
+.eslogan__reservar :hover {
+  color: #ffdc83;
+}
+
 .header-blue .boton-reserva {
   color: var(--bs-white);
   text-shadow: 2px 1px 2px #000000;

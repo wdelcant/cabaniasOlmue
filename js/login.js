@@ -39,9 +39,13 @@ function initializeEvents() {
 
 function checkInputs(e) {
 	e.preventDefault();
+
 	username.addEventListener('input', function () {
 		let usernameValue = username.value;
 		usernameValue === '' ? setErrorFor(username, 'El usuario no puede estar vacío') :
+			usernameValue === 'admin' ? setErrorFor(username, 'El usuario no puede ser admin') :
+			usernameValue === 'user' ? setErrorFor(username, 'El usuario no puede ser user') :
+			usernameValue === 'root' ? setErrorFor(username, 'El usuario no puede ser root') :
 			usernameValue.length < 3 ? setErrorFor(username, 'Debe tener al menos 3 caracteres') :
 			usernameValue.length > 20 ? setErrorFor(username, 'Debe tener menos de 20 caracteres') :
 			setSuccessFor(username);

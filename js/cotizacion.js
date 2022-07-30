@@ -119,9 +119,12 @@ function validarIngresos(e) {
     } else if (total >= 13 && cabins === 2) {
         alertError();
     } else {
+
         ingresos.push(ingreso);
         agregarTotalDetalles();
         AgregarTotalDinero();
+        limpiarIngresosTotales();
+        limpiarPrecioTotal();
         const Toast = Swal.mixin({
             toast: true,
             background: '#f7e6ba',
@@ -199,6 +202,7 @@ function validarFormulario(e) {
         limpiarTabla();
         agregarUsuariosTabla();
         almacenarUsuariosLocalStorage();
+        console.log(usuarios)
         const Toast = Swal.mixin({ // se agrega alerta de que se agregó correctamente
             toast: true,
             background: '#f7e6ba',
@@ -234,10 +238,11 @@ const AgregarTotalDinero = () => { // Agrega el precio total del a cotización
         let spanTotal = document.createElement('p');
         totalP = 60000 * ingreso.cabins
         spanTotal.innerHTML = `
-        <span><b>Total a pagar: $${totalP}</b></span>
+        <span><strong>Total a pagar: $${totalP}</strong></span>
         `;
         totalAPagar.appendChild(spanTotal);
     });
+
 }
 
 function agregarUsuariosTabla() { // Agrega los usuarios a la cotización
@@ -253,11 +258,31 @@ function agregarUsuariosTabla() { // Agrega los usuarios a la cotización
     });
 }
 
-function limpiarTabla() {
+
+// ============================================EVITA QUE LOS DATOS SE DUPLIQUEN=====================================================
+
+function limpiarTabla() { // Limpia la tabla de usuarios ingresados
     while (tabla.rows.length > 1) {
         tabla.deleteRow(1);
     }
 }
+
+function limpiarIngresosTotales() { // Limpia los ingresos de la cotización cabañas y totales
+    while (listaDetalles.children.length > 1) {
+        listaDetalles.removeChild(listaDetalles.firstChild);
+    }
+}
+
+function limpiarPrecioTotal() { // Limpia el precio total de la cotización
+    while (totalAPagar.children.length > 1) {
+        totalAPagar.removeChild(totalAPagar.firstChild);
+    }
+}
+
+// ============================================FIN=====================================================
+
+
+// storage de datos de usuarios
 
 function almacenarUsuariosLocalStorage() {
     localStorage.setItem('listaUsuarios', JSON.stringify(usuarios));
@@ -268,7 +293,7 @@ function obtenerUsuariosLocalStorage() {
     usuariosAlmacenados === null ? usuarios = [] : usuarios = JSON.parse(usuariosAlmacenados);
 }
 
-function renderizarListaUsuarios() {
+function renderizarDetalle() {
     limpiarTabla();
 }
 // vacía la lista de usuarios Almacenados con Sweetalert2
@@ -290,7 +315,10 @@ function vaciarLogica() {
 
 function vaciarUsuariosLocalStorage() {
     usuarios = [];
-    renderizarListaUsuarios();
+    ingresos = [];
+    listaDetalles.innerHTML = '';
+    totalAPagar.innerHTML = '';
+    renderizarDetalle();
     localStorage.removeItem('listaUsuarios');
 
 } // vacía la lista de usuarios Almacenados
@@ -303,13 +331,16 @@ function botonImprimir() {
 function extraerLogin() {
     let usuarioRegistrados = localStorage.getItem('userList');
     let arrayUser = usuarioRegistrados ? JSON.parse(usuarioRegistrados) : [];
-    if (arrayUser !== '') {
-        arrayUser.forEach((username) => {
+    const filteredArrUser = arrayUser.reduce(
+        (prev, curr) => prev.find(el => el.usernameValue === curr.usernameValue) ?
+        prev : [...prev, curr], []);
+    if (filteredArrUser !== '') {
+        filteredArrUser.forEach((username) => {
             let spanRegistros = document.createElement('p');
             spanRegistros.innerHTML = `
-        <p> Estimado/a <b>${username.usernameValue} </b>,</p>
+        <p> Estimado/a <strong>${username.usernameValue} </strong>,</p>
         <p> Correo: 
-        <a href='mailto:${username.emailValue}' class='text-decoration-none mail' target='_blank'><b>${username.emailValue}</b></a></p>
+        <a href='mailto:${username.emailValue}' class='text-decoration-none mail' target='_blank'><strong>${username.emailValue}</strong></a></p>
         `;
             datosRegistros.insertBefore(spanRegistros, datosRegistros.firstChild);
         });
@@ -317,3 +348,17 @@ function extraerLogin() {
 }
 //inicializar el programa
 main();
+
+
+function validaTotal() {
+
+    ingresos.forEach((ingreso) => {
+        if (usuarios > ingreso.total) {
+            console.log('No se puede ingresar más personas');
+        }
+    });
+}
+validaTotal();
+
+
+//=============================== V.4 =====================================================

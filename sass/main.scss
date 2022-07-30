@@ -40,6 +40,14 @@
   color: variables.$colorPrimary;
 }
 
+.eslogan__reservar {
+  text-decoration: none;
+  :hover {
+    color: variables.$colorPrimary;
+  }
+}
+
+
 .header-blue .boton-reserva {
   color: var(--bs-white);
   text-shadow: 2px 1px 2px variables.$colorBlack;

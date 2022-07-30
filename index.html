@@ -15,7 +15,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://wilsondelcanto.bss.design/assets/img/piscina.jpg">
-    <link rel="icon" type="image/png" sizes="32x32" href="./favicon.ico">
+    <link rel="icon" type="icon" sizes="32x32" href="./favicon.ico">
 
     <!-- Bootstrap CSS v5.2.0-beta1 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
@@ -47,8 +47,8 @@
             <!-- menu principal -->
             <nav class="navbar navbar-dark navbar-expand-md nav-principal">
                 <div class="container"><a class="navbar-brand logotipo" data-aos="flip-left" data-aos-duration="2500"
-                        data-aos-delay="300" href="index.html"><b>Cabañas
-                            <span class="logo">Olmué</span></b></a><button data-bs-toggle="collapse"
+                        data-aos-delay="300" href="index.html"><strong>Cabañas
+                            <span class="logo">Olmué</span></strong></a><button data-bs-toggle="collapse"
                         class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle
                             navigation</span><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" data-aos="fade" data-aos-duration="2500" data-aos-delay="300"
@@ -61,9 +61,6 @@
                             </li>
                             <li class="nav-item"><a class="nav-link " href="#!">Entretención</a></li>
                             <li class="nav-item"><a class="nav-link " href="./pages/contacto.html">Contacto</a>
-                            <li class="nav-item"><a id="myacc" class="nav-link " href="#"><b> Registrarse</b> <i
-                                        class="fa fa-book"></i></a>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -74,7 +71,11 @@
                     data-aos-duration="2500" data-aos-delay="300">
                     <span>Bienvenidos al mejor lugar de relajo de </span><span class="logo">Olmué</span>
                 </h1>
-
+                <a id="myacc"
+                    class="justify-content-center align-items-center align-self-sm-center eslogan eslogan__reservar"
+                    data-aos="fade" data-aos-duration="2500" data-aos-delay="300" href="#">
+                    <strong> RESERVAR </strong>
+                </a>
             </div>
         </div>
         <!-- menu flotante -->
@@ -114,7 +115,7 @@
 
                     <div class="headerLogin">
                         <h2>Crear Cuenta</h2>
-                        <span class="close">&times;</span>
+                        <span class="close">❌</span>
                     </div>
                     <form id="formLogin" class="formLogin-style">
                         <div class="form-control">
@@ -153,10 +154,10 @@
 
 
     </header>
+    <main class="container py-4 py-xl-5" id="whois">
+        <!-- contenido -->
+        <!-- quienes somos? -->
 
-    <!-- contenido -->
-    <!-- quienes somos? -->
-    <div class="container py-4 py-xl-5" id="whois">
         <div class="row mb-5">
             <div class="col-md-8 col-xl-6 text-center mx-auto" data-aos="fade-down" data-aos-duration="900">
                 <h2 class="fs-2">¿Quiénes somos?</h2>
@@ -188,10 +189,11 @@
                 </div>
             </div>
         </div>
-    </div>
+
+    </main>
     <!-- galería -->
-    <div class="carousel slide" data-bs-ride="carousel" data-aos="fade" data-aos-duration="1350" data-aos-delay="300"
-        id="carousel-1">
+    <section class="carousel slide" data-bs-ride="carousel" data-aos="fade" data-aos-duration="1350"
+        data-aos-delay="300" id="carousel-1">
         <div class="carousel-inner">
             <div class="carousel-item active"><img class="w-100 d-block" src="assets/img/foto2.jpg" alt="Slide Image">
             </div>
@@ -224,7 +226,7 @@
             <li data-bs-target="#carousel-1" data-bs-slide-to="6"></li>
             <li data-bs-target="#carousel-1" data-bs-slide-to="7"></li>
         </ol>
-    </div>
+    </section>
 
     <!-- sección testimonios -->
     <section class="container testimonios " data-aos="fade" data-aos-duration="1350" data-aos-delay="300">
@@ -240,7 +242,8 @@
                         <p class="text-center">Lugar Campestre. Hay siembra de Hortalizas.
                             Varias Parcelas de Agrado.</p>
                         <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50"
-                                height="50" src="./assets/img/user1.jpg" />
+                                height="50" src="./assets/img/user1.jpg"
+                                alt="hombre comentando el lugar de las cañas" />
                             <div>
                                 <p class="fw-bold text-primary mb-0">Matias Luengo</p>
                                 <p class="text-muted mb-0">Tranquilo</p>
@@ -259,7 +262,8 @@
                             atenta.
                         </p>
                         <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50"
-                                height="50" src="./assets/img/user3.jpg" />
+                                height="50" src="./assets/img/user3.jpg"
+                                alt="Mujer comentando sobre lo maravilloso que es el sector" />
                             <div>
                                 <p class="fw-bold text-primary mb-0">Maite Kirmayr</p>
                                 <p class="text-muted mb-0">Maravilloso</p>
@@ -278,7 +282,8 @@
                             y el
                             sector es muy tranquilo..</p>
                         <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50"
-                                height="50" src="./assets/img/user2.jpg" />
+                                height="50" src="./assets/img/user2.jpg"
+                                alt="hombre que comenta sobre la tranquilidad del lugar" />
                             <div>
                                 <p class="fw-bold text-primary mb-0">Alejandro Toro</p>
                                 <p class="text-muted mb-0">Excelente</p>
@@ -294,13 +299,10 @@
             </div>
     </section>
 
-    <!-- siguiente sección en construcción -->
-    <!-- información de contacto y mapa -->
-
     <!-- pie de pagina -->
     <footer class="text-center text-lg-start bg-dark text-white ">
         <!-- Social media -->
-        <section class="justify-content-center justify-content-lg-between p-4 border-bottom">
+        <div class="justify-content-center justify-content-lg-between p-4 border-bottom">
             <form>
                 <div class="row d-flex justify-content-center">
                     <div class="col-auto">
@@ -320,70 +322,70 @@
                     </div>
                 </div>
             </form>
-        </section>
+        </div>
         <!-- Links  -->
-        <section class="">
-            <div class="container text-center text-md-start mt-5">
-                <div class="row mt-3">
-                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                        <h3 class="text-uppercase fw-bold mb-4">
-                            <i class="fas fa-gem me-3"></i>CABAÑAS <span style="color: rgb(255, 220, 131);">OLMUÉ 
-                        </h3>
-                        <p>
-                            No dudes en visitar nuestras redes sociales, para ponerte en contacto directo
-                            con
-                            nosotros!
-                        </p>
-                    </div>
-                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 ">
-                        <h6 class="text-uppercase fw-bold mb-4">
-                            Links
-                        </h6>
-                        <p>
-                            <a href="index.html" class="text-reset text-decoration-none">Inicio</a>
-                        </p>
-                        <p>
-                            <a href="./pages/eventos.html" class="text-reset text-decoration-none">Eventos</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset text-decoration-none">Cabañas</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset text-decoration-none">Entretención</a>
-                        </p>
-                        <p>
-                            <a href="./pages/contacto.html" class="text-reset text-decoration-none">Contacto</a>
-                    </div>
-                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                        <h6 class="text-uppercase fw-bold mb-4">
-                            Contacto
-                        </h6>
-                        <p><i class="fa fa-home me-3"></i> Miraflores #5000<b> Olmué, Chile</b></p>
-                        <p><i class="fa fa-phone me-3"></i><b>+569 54205188</b> </p>
-                        <p><i class="fa fa-envelope me-3"></i><a href="mailto:contacto@cabaniasolmue.cl"
-                                class="text-decoration-none mail" target="_blank"><b>contacto@cabaniasolmue.cl</b></a>
-                        </p>
-                    </div>
-                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 redes">
-                        <h6 class="text-uppercase fw-bold mb-4 ">
-                            Redes sociales
-                        </h6>
-                        <a href="https://facebook.com/" class="me-4 text-reset text-decoration-none">
-                            <i class="fa fa-facebook "></i>
-                        </a>
-                        <a href="https://twitter.com/" class="me-4 text-reset text-decoration-none">
-                            <i class="fa fa-twitter"></i>
-                        </a>
-                        <a href="https://instagram.com/" class="me-4 text-reset text-decoration-none">
-                            <i class="fa fa-instagram"></i>
-                        </a>
-                        <a href="https://linkedin.com/" class="me-4 text-reset text-decoration-none">
-                            <i class="fa fa-linkedin"></i>
-                        </a>
-                    </div>
+        <div class="container text-center text-md-start mt-5">
+            <div class="row mt-3">
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <h3 class="text-uppercase fw-bold mb-4">
+                        <i class="fas fa-gem me-3"></i>CABAÑAS <span style="color: rgb(255, 220, 131);">OLMUÉ 
+                    </h3>
+                    <p>
+                        No dudes en visitar nuestras redes sociales, para ponerte en contacto directo
+                        con
+                        nosotros!
+                    </p>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 ">
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Links
+                    </h6>
+                    <p>
+                        <a href="index.html" class="text-reset text-decoration-none">Inicio</a>
+                    </p>
+                    <p>
+                        <a href="./pages/eventos.html" class="text-reset text-decoration-none">Eventos</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset text-decoration-none">Cabañas</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset text-decoration-none">Entretención</a>
+                    </p>
+                    <p>
+                        <a href="./pages/contacto.html" class="text-reset text-decoration-none">Contacto</a>
+                </div>
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Contacto
+                    </h6>
+                    <p><i class="fa fa-home me-3"></i> Miraflores #5000<strong> Olmué, Chile</strong></p>
+                    <p><i class="fa fa-phone me-3"></i><strong>+569 54205188</strong> </p>
+                    <p><i class="fa fa-envelope me-3"></i><a href="mailto:contacto@cabaniasolmue.cl"
+                            class="text-decoration-none mail"
+                            target="_blank"><strong>contacto@cabaniasolmue.cl</strong></a>
+                    </p>
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 redes">
+                    <h6 class="text-uppercase fw-bold mb-4 ">
+                        Redes sociales
+                    </h6>
+                    <a href="https://facebook.com/" class="me-4 text-reset text-decoration-none">
+                        <i class="fa fa-facebook "></i>
+                    </a>
+                    <a href="https://twitter.com/" class="me-4 text-reset text-decoration-none">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com/" class="me-4 text-reset text-decoration-none">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                    <a href="https://linkedin.com/" class="me-4 text-reset text-decoration-none">
+                        <i class="fa fa-linkedin"></i>
+                    </a>
                 </div>
             </div>
-        </section>
+        </div>
+
         <!-- Copyright -->
         <div class="text-center text-secondary p-4 copy">
             © 2022 Copyright:
