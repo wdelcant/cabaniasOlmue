@@ -245,7 +245,7 @@ footer .copy {
 
 .modalResumen {
   background-color: #fefefe;
-  margin: 2em auto; 
+  margin: 5% 10% auto; 
   padding: 0.8em;
   width: auto;
 }
@@ -406,4 +406,12 @@ footer .copy {
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
+}
+
+#wrap-preload .spinner{
+  position: absolute;
+  width: 3em;
+  height: 3em;
+  top: 50%;
+  left: 50%;
 }

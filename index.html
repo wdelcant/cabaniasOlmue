@@ -40,7 +40,11 @@
 
 <body>
     <div id="wrap-preload">
-        <img src="./assets/img/pageLoader.gif" alt="gif" class="gif">
+        <div class="spinner">
+            <div class="spinner-border text-warning" role="status">
+                <span class="sr-only">Cargando...</span>
+            </div>
+        </div>
     </div>
     <header>
         <div class="header-blue">
@@ -120,28 +124,28 @@
                     <form id="formLogin" class="formLogin-style">
                         <div class="form-control">
                             <label for="username">Usuario</label>
-                            <input type="text" id="username" required/>
+                            <input type="text" id="username" required />
                             <i class="fa fa-check-circle"></i>
                             <i class="fa fa-exclamation-circle"></i>
                             <small>Mensaje de error</small>
                         </div>
                         <div class="form-control">
                             <label for="username">Correo</label>
-                            <input type="email" id="email" required/>
+                            <input type="email" id="email" required />
                             <i class="fa fa-check-circle"></i>
                             <i class="fa fa-exclamation-circle"></i>
                             <small>Mensaje de error</small>
                         </div>
                         <div class="form-control">
                             <label for="username">Contraseña</label>
-                            <input type="password"  id="password" required/>
+                            <input type="password" id="password" required />
                             <i class="fa fa-check-circle"></i>
                             <i class="fa fa-exclamation-circle"></i>
                             <small>Mensaje de error</small>
                         </div>
                         <div class="form-control">
                             <label for="username">Repita la contraseña</label>
-                            <input type="password"  id="passwordTwo" required/>
+                            <input type="password" id="passwordTwo" required />
                             <i class="fa fa-check-circle"></i>
                             <i class="fa fa-exclamation-circle"></i>
                             <small>Mensaje de error</small>

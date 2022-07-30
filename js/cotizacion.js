@@ -259,7 +259,6 @@ function agregarUsuariosTabla() { // Agrega los usuarios a la cotización
             <td>${usuario.run}</td>
             <td>${usuario.edad}</td>`;
         tabla.tBodies[0].append(filaTabla);
-
     });
 }
 
@@ -324,10 +323,7 @@ function vaciarUsuariosLocalStorage() {
 
 } // vacía la lista de usuarios Almacenados
 
-
-
 // imprime la cotización
-
 function printDiv() {
     let divContents = document.getElementById("imprimir").innerHTML;
     let a = window.open('', '', 'height=900, width=900');
@@ -354,7 +350,6 @@ function botonImprimir() {
                     icon: 'success',
                 })
                 setTimeout(() => {
-                    window.close();
                     vaciarUsuariosLocalStorage();
                     localStorage.removeItem('userList');
                     window.location.href = "../index.html";
