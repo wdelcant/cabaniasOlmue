@@ -203,23 +203,21 @@
                 <div class="container">
                     <div id="resumenCotizador" class="col print modal">
                         <div class="card modalResumen">
-                            <div class="card-body">
-                                <div class="headerLogin">
-
+                            <div class="headerLogin">
+                                <h3></h3>
+                                <span class="close">❌</span>
+                            </div>
+                            <div id="imprimir" class="card-body">
+                                <div>
                                     <h3 class="card-title">Cotización cabañas Olmué</h3>
-                                    <span class="close">❌</span>
                                 </div>
                                 <p class="card-text">
                                 <div id="datosRegistros">
-
                                 </div>
                                 <p>Detalles de su cotización:</p>
                                 <ul id="listaDetalles">
-
                                 </ul>
                                 </p>
-
-
                                 <hr />
                                 <p>Personas ingresadas </p>
                                 <div class="">
@@ -243,21 +241,22 @@
                                     © 2022 Copyright:
                                     <a class="text-reset fw-bold" href="#">Cabañas Olmué</a>
                                 </div>
-                                <form id="formStorage">
+                            </div>
 
-                                    <div class="d-grid gap-2">
-                                        <button type="submit" class="btn btn-primary" id="btnImpr">Imprimir</button>
-                                    </div>
-                                </form>
-                                <div class="d-grid gap-2">
-                                    <button type="submit" id="btnVaciar" class="btn btn-danger">Vaciar
-                                        lista</button>
-                                </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary" id="btnImpr">Imprimir y
+                                    finalizar</button>
+                            </div>
+
+                            <div class="d-grid gap-2">
+                                <button type="submit" id="btnVaciar" class="btn btn-danger">Vaciar
+                                    cotización</button>
                             </div>
                         </div>
                     </div>
-                    <!-- FIN COTIZACIÓN -->
                 </div>
+                <!-- FIN COTIZACIÓN -->
+            </div>
     </main>
     <!-- pie de pagina -->
     <!-- Footer -->

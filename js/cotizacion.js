@@ -33,6 +33,7 @@ function main() {
     vaciarLogica();
     botonImprimir();
 
+
 }
 // Aplicamos constructores a las clases
 class Usuarios {
@@ -236,9 +237,9 @@ function agregarTotalDetalles() { // Agrega el total de los ingresos a la tabla
 const AgregarTotalDinero = () => { // Agrega el precio total del a cotización
     ingresos.forEach((ingreso) => {
         let spanTotal = document.createElement('p');
-        totalP = 60000 * ingreso.cabins
+        totalP = 70 * ingreso.cabins
         spanTotal.innerHTML = `
-        <span><strong>Total a pagar: $${totalP}</strong></span>
+        <span><strong>Total a pagar: $${totalP}.000</strong></span>
         `;
         totalAPagar.appendChild(spanTotal);
     });
@@ -304,6 +305,7 @@ function vaciarLogica() {
             showCancelButton: true,
             confirmButtonText: 'Sí, estoy seguro',
             denyButtonText: `Cancelar`,
+            cancelButtonText: 'No',
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire('Lista vacía', '', 'success')
@@ -323,9 +325,47 @@ function vaciarUsuariosLocalStorage() {
 
 } // vacía la lista de usuarios Almacenados
 
+
+
+// imprime la cotización
+
+function printDiv() {
+    let divContents = document.getElementById("imprimir").innerHTML;
+    // let a = window.open('', '', 'height=720, width=680');
+    let a = window.open(height = 720, width = 680);
+    a.document.write(divContents);
+    a.document.close();
+    a.print();
+}
+
+
+
 function botonImprimir() {
-    btnImpr.onclick = () => window.print();
-} // imprime la tabla de usuarios
+    btnImpr.addEventListener("click", () => { // se agrega alerta de que se imprimió correctamente
+        Swal.fire({ // se agrega alerta de que se vació correctamente
+            title: "¿Deseas finalizar la cotización e imprimir?",
+            showCancelButton: true,
+            confirmButtonText: 'Sí',
+            denyButtonText: `Cancelar`,
+            cancelButtonText: 'No',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                printDiv();
+                Swal.fire({
+                    title: 'Cotización finalizada',
+                    text: '¡Gracias por usar nuestros servicios!',
+                    icon: 'success', // se agrega un tiempo de espera para que se imprima
+                })
+                setTimeout(() => {
+                    vaciarUsuariosLocalStorage();
+                    localStorage.removeItem('userList');
+                    window.location.href = "../index.html";
+                }, 2000);
+            }
+        })
+    });
+}
+
 
 // se extrae usuario y correo de localStorage
 function extraerLogin() {
@@ -349,16 +389,4 @@ function extraerLogin() {
 //inicializar el programa
 main();
 
-
-function validaTotal() {
-
-    ingresos.forEach((ingreso) => {
-        if (usuarios > ingreso.total) {
-            console.log('No se puede ingresar más personas');
-        }
-    });
-}
-validaTotal();
-
-
-//=============================== V.4 =====================================================
+//=============================== V.5 =====================================================
