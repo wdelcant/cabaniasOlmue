@@ -37,7 +37,8 @@ function main() {
 }
 // Aplicamos constructores a las clases
 class Usuarios {
-    constructor(nombre, apellido, apellidoMaterno, run, edad) {
+    constructor(ID, nombre, apellido, apellidoMaterno, run, edad) {
+        this.ID = ID;
         this.nombre = nombre.toUpperCase();
         this.apellido = apellido.toUpperCase();
         this.apellidoMaterno = apellidoMaterno.toUpperCase();
@@ -120,7 +121,6 @@ function validarIngresos(e) {
     } else if (total >= 13 && cabins === 2) {
         alertError();
     } else {
-
         ingresos.push(ingreso);
         agregarTotalDetalles();
         AgregarTotalDinero();
@@ -149,8 +149,11 @@ function validarFormulario(e) {
     let apellidoMaterno = inputApellidoMaterno.value;
     let run = inputRun.value;
     let edad = parseInt(inputEdad.value);
-    let usuario = new Usuarios(nombre, apellido, apellidoMaterno, run, edad);
-
+    let ID = 0; // se le asigna un ID a cada usuario
+    while (ID < usuarios.length) {
+        ID++;
+    }
+    let usuario = new Usuarios(ID, nombre, apellido, apellidoMaterno, run, edad);
 
     const validaNombre = () => {
         nombre === '' ? setErrorFor(inputNombre, 'El nombre no puede estar vacío') :
@@ -203,7 +206,6 @@ function validarFormulario(e) {
         limpiarTabla();
         agregarUsuariosTabla();
         almacenarUsuariosLocalStorage();
-        console.log(usuarios)
         const Toast = Swal.mixin({ // se agrega alerta de que se agregó correctamente
             toast: true,
             background: '#f7e6ba',
@@ -220,6 +222,7 @@ function validarFormulario(e) {
         alertError();
     }
 }
+
 
 function agregarTotalDetalles() { // Agrega el total de los ingresos a la tabla
     ingresos.forEach((ingreso) => {
@@ -256,12 +259,11 @@ function agregarUsuariosTabla() { // Agrega los usuarios a la cotización
             <td>${usuario.run}</td>
             <td>${usuario.edad}</td>`;
         tabla.tBodies[0].append(filaTabla);
+
     });
 }
 
-
 // ============================================EVITA QUE LOS DATOS SE DUPLIQUEN=====================================================
-
 function limpiarTabla() { // Limpia la tabla de usuarios ingresados
     while (tabla.rows.length > 1) {
         tabla.deleteRow(1);
@@ -279,12 +281,9 @@ function limpiarPrecioTotal() { // Limpia el precio total de la cotización
         totalAPagar.removeChild(totalAPagar.firstChild);
     }
 }
-
 // ============================================FIN=====================================================
 
-
 // storage de datos de usuarios
-
 function almacenarUsuariosLocalStorage() {
     localStorage.setItem('listaUsuarios', JSON.stringify(usuarios));
 }
@@ -331,14 +330,11 @@ function vaciarUsuariosLocalStorage() {
 
 function printDiv() {
     let divContents = document.getElementById("imprimir").innerHTML;
-    // let a = window.open('', '', 'height=720, width=680');
-    let a = window.open(height = 720, width = 680);
+    let a = window.open();
     a.document.write(divContents);
     a.document.close();
     a.print();
 }
-
-
 
 function botonImprimir() {
     btnImpr.addEventListener("click", () => { // se agrega alerta de que se imprimió correctamente
@@ -354,18 +350,17 @@ function botonImprimir() {
                 Swal.fire({
                     title: 'Cotización finalizada',
                     text: '¡Gracias por usar nuestros servicios!',
-                    icon: 'success', // se agrega un tiempo de espera para que se imprima
+                    icon: 'success',
                 })
                 setTimeout(() => {
                     vaciarUsuariosLocalStorage();
                     localStorage.removeItem('userList');
                     window.location.href = "../index.html";
-                }, 2000);
+                }, 2500); // se agrega un tiempo de espera para que se imprima
             }
         })
     });
 }
-
 
 // se extrae usuario y correo de localStorage
 function extraerLogin() {
