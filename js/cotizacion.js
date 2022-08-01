@@ -21,6 +21,7 @@ let inputChildren;
 let listaDetalles;
 let ingreso;
 let totalAPagar;
+const d = document;
 
 // sección de validaciones de funciones
 function main() {
@@ -57,23 +58,23 @@ class Ingresos {
 
 // sección de DOM
 function inicializarElementos() { // inicializa los elementos
-    formulario = document.getElementById('formulario');
-    inputNombre = document.getElementById('inputNombre');
-    inputApellido = document.getElementById('inputApellido');
-    inputApellidoMaterno = document.getElementById('inputApellidoMaterno');
-    inputRun = document.getElementById('inputRun');
-    inputEdad = document.getElementById('inputEdad');
-    tabla = document.getElementById('tablaUsuarios');
-    datosRegistros = document.getElementById('datosRegistros');
-    btnVaciar = document.getElementById('btnVaciar');
-    btnImpr = document.getElementById('btnImpr');
-    formSelect = document.getElementById('formSelect');
-    inputCabins = document.getElementById('inputCabins');
-    inputAdults = document.getElementById('inputAdults');
-    inputChildren = document.getElementById('inputChildren');
-    listaDetalles = document.getElementById('listaDetalles');
-    btnAdd = document.getElementById('btnAdd');
-    totalAPagar = document.getElementById('totalAPagar');
+    formulario = d.getElementById('formulario');
+    inputNombre = d.getElementById('inputNombre');
+    inputApellido = d.getElementById('inputApellido');
+    inputApellidoMaterno = d.getElementById('inputApellidoMaterno');
+    inputRun = d.getElementById('inputRun');
+    inputEdad = d.getElementById('inputEdad');
+    tabla = d.getElementById('tablaUsuarios');
+    datosRegistros = d.getElementById('datosRegistros');
+    btnVaciar = d.getElementById('btnVaciar');
+    btnImpr = d.getElementById('btnImpr');
+    formSelect = d.getElementById('formSelect');
+    inputCabins = d.getElementById('inputCabins');
+    inputAdults = d.getElementById('inputAdults');
+    inputChildren = d.getElementById('inputChildren');
+    listaDetalles = d.getElementById('listaDetalles');
+    btnAdd = d.getElementById('btnAdd');
+    totalAPagar = d.getElementById('totalAPagar');
 }
 
 
@@ -93,8 +94,8 @@ function validarIngresos(e) {
     let ingreso = new Ingresos(cabins, adults, children, total);
 
     const validaCabins = () => {
-        cabins === '' ? setErrorFor(inputCabins, 'El número de cabins no puede estar vacío') :
-            total >= 7 && cabins === 1 ? setErrorFor(inputCabins, 'El máximo de personas es 6, si desea más debe arrendar 2 cabañas') :
+        cabins === '' ? setErrorFor(inputCabins, 'El número de cabins no puede estar vacío.') :
+            total >= 7 && cabins === 1 ? setErrorFor(inputCabins, 'El máximo de personas es 6, si desea más debe arrendar 2 cabañas.') :
             total >= 13 && cabins === 2 ? setErrorFor(inputCabins, 'El máximo de personas es 12, si desea más debe contactar a la administración.') :
             setSuccessFor(inputCabins);
     }
@@ -102,15 +103,15 @@ function validarIngresos(e) {
 
     const validaAdults = () => {
         adults < 1 ? setErrorFor(inputAdults, 'El número de adultos no puede estar vacío') :
-            total >= 7 && cabins <= 1 ? setErrorFor(inputAdults, 'No se puede ingresar más adultos, supera el máximo') :
+            total >= 7 && cabins <= 1 ? setErrorFor(inputAdults, 'No se puede ingresar más adultos, supera el máximo.') :
             total >= 13 && cabins <= 2 ? setErrorFor(inputAdults, 'No se puede ingresar más adultos, super el máximo.') :
             setSuccessFor(inputAdults);
     }
     validaAdults(adults);
 
     const validaChildren = () => {
-        children === '' ? setErrorFor(inputChildren, 'El número de cabins no puede estar vacío') :
-            total >= 7 && cabins <= 1 ? setErrorFor(inputChildren, 'No se puede ingresar más adultos, supera el máximo') :
+        children === '' ? setErrorFor(inputChildren, 'El número de cabins no puede estar vacío.') :
+            total >= 7 && cabins <= 1 ? setErrorFor(inputChildren, 'No se puede ingresar más adultos, supera el máximo.') :
             total >= 13 && cabins <= 2 ? setErrorFor(inputChildren, 'No se puede ingresar más adultos, super el máximo.') :
             setSuccessFor(inputChildren);
     }
@@ -156,45 +157,45 @@ function validarFormulario(e) {
     let usuario = new Usuarios(ID, nombre, apellido, apellidoMaterno, run, edad);
 
     const validaNombre = () => {
-        nombre === '' ? setErrorFor(inputNombre, 'El nombre no puede estar vacío') :
-            nombre = !isLetters(nombre) ? setErrorFor(inputNombre, 'Debes escribir el nombre') :
-            nombre.length < 3 ? setErrorFor(inputNombre, 'El nombre debe tener al menos 3 caracteres') :
-            nombre.length > 20 ? setErrorFor(inputNombre, 'El nombre debe tener máximo 20 caracteres') :
+        nombre === '' ? setErrorFor(inputNombre, 'El nombre no puede estar vacío.') :
+            nombre = !isLetters(nombre) ? setErrorFor(inputNombre, 'Debes escribir el nombre.') :
+            nombre.length < 3 ? setErrorFor(inputNombre, 'El nombre debe tener al menos 3 caracteres.') :
+            nombre.length > 20 ? setErrorFor(inputNombre, 'El nombre debe tener máximo 20 caracteres.') :
             setSuccessFor(inputNombre);
     }
     validaNombre(nombre);
 
     const validaApellido = () => {
-        apellido === '' ? setErrorFor(inputApellido, 'El apellido no puede estar vacío') :
-            apellido = !isLetters(apellido) ? setErrorFor(inputApellido, 'Debes escribir el apellido') :
-            apellido.length < 3 ? setErrorFor(inputApellido, 'El apellido debe tener al menos 3 caracteres') :
-            apellido.length > 20 ? setErrorFor(inputApellido, 'El apellido debe tener máximo 20 caracteres') :
+        apellido === '' ? setErrorFor(inputApellido, 'El apellido no puede estar vacío.') :
+            apellido = !isLetters(apellido) ? setErrorFor(inputApellido, 'Debes escribir el apellido.') :
+            apellido.length < 3 ? setErrorFor(inputApellido, 'El apellido debe tener al menos 3 caracteres.') :
+            apellido.length > 20 ? setErrorFor(inputApellido, 'El apellido debe tener máximo 20 caracteres.') :
             setSuccessFor(inputApellido);
     }
     validaApellido(apellido);
 
     const validaApellidoMaterno = () => {
-        apellidoMaterno === '' ? setErrorFor(inputApellidoMaterno, 'El apellido materno no puede estar vacío') :
-            apellidoMaterno = !isLetters(apellidoMaterno) ? setErrorFor(inputApellidoMaterno, 'Debes escribir el apellido materno') :
-            apellidoMaterno.length < 3 ? setErrorFor(inputApellidoMaterno, 'El apellido materno debe tener al menos 3 caracteres') :
-            apellidoMaterno.length > 20 ? setErrorFor(inputApellidoMaterno, 'El apellido materno debe tener máximo 20 caracteres') :
+        apellidoMaterno === '' ? setErrorFor(inputApellidoMaterno, 'El apellido materno no puede estar vacío.') :
+            apellidoMaterno = !isLetters(apellidoMaterno) ? setErrorFor(inputApellidoMaterno, 'Debes escribir el apellido materno.') :
+            apellidoMaterno.length < 3 ? setErrorFor(inputApellidoMaterno, 'El apellido materno debe tener al menos 3 caracteres.') :
+            apellidoMaterno.length > 20 ? setErrorFor(inputApellidoMaterno, 'El apellido materno debe tener máximo 20 caracteres.') :
             setSuccessFor(inputApellidoMaterno);
     }
     validaApellidoMaterno(apellidoMaterno);
 
     const validaRun = () => {
-        run === '' ? setErrorFor(inputRun, 'El RUN no puede estar vacío') :
-            run = !isRun(run) ? setErrorFor(inputRun, 'Debes escribir el run') :
-            run.length < 10 ? setErrorFor(inputRun, 'El run debe tener al menos 10 caracteres') :
-            run.length > 10 ? setErrorFor(inputRun, 'El run debe tener máximo 10 caracteres') :
+        run === '' ? setErrorFor(inputRun, 'El RUN no puede estar vacío.') :
+            run = !isRun(run) ? setErrorFor(inputRun, 'Debes escribir el run.') :
+            run.length < 10 ? setErrorFor(inputRun, 'El run debe tener al menos 10 caracteres.') :
+            run.length > 10 ? setErrorFor(inputRun, 'El run debe tener máximo 10 caracteres.') :
             setSuccessFor(inputRun);
     }
     validaRun(run);
 
     const validaEdad = () => {
-        edad === '' ? setErrorFor(inputEdad, 'La edad no puede estar vacía') :
-            edad <= 0 ? setErrorFor(inputEdad, 'La edad debe ser mayor a 0') :
-            edad > 100 ? setErrorFor(inputEdad, 'La edad debe ser menor a 100') :
+        edad === '' ? setErrorFor(inputEdad, 'La edad no puede estar vacía.') :
+            edad <= 0 ? setErrorFor(inputEdad, 'La edad debe ser mayor a 0.') :
+            edad > 100 ? setErrorFor(inputEdad, 'La edad debe ser menor a 100.') :
             setSuccessFor(inputEdad);
     }
     validaEdad(edad);
@@ -226,7 +227,7 @@ function validarFormulario(e) {
 
 function agregarTotalDetalles() { // Agrega el total de los ingresos a la tabla
     ingresos.forEach((ingreso) => {
-        let Detalle = document.createElement('ul');
+        let Detalle = d.createElement('ul');
         Detalle.innerHTML = `
         <li>Cantidad de cabañas: ${ingreso.cabins}</li>
         <li>Adultos: ${ingreso.adults}</li>
@@ -239,7 +240,7 @@ function agregarTotalDetalles() { // Agrega el total de los ingresos a la tabla
 
 const AgregarTotalDinero = () => { // Agrega el precio total del a cotización
     ingresos.forEach((ingreso) => {
-        let spanTotal = document.createElement('p');
+        let spanTotal = d.createElement('p');
         totalP = 70 * ingreso.cabins
         spanTotal.innerHTML = `
         <span><strong>Total a pagar: $${totalP}.000</strong></span>
@@ -251,7 +252,7 @@ const AgregarTotalDinero = () => { // Agrega el precio total del a cotización
 
 function agregarUsuariosTabla() { // Agrega los usuarios a la cotización
     usuarios.forEach((usuario) => {
-        let filaTabla = document.createElement('tr');
+        let filaTabla = d.createElement('tr');
         filaTabla.innerHTML = `
             <td>${usuario.nombre}</td>
             <td>${usuario.apellido}</td>
@@ -325,10 +326,10 @@ function vaciarUsuariosLocalStorage() {
 
 // imprime la cotización
 function printDiv() {
-    let divContents = document.getElementById("imprimir").innerHTML;
+    let divContents = d.getElementById("imprimir").innerHTML;
     let a = window.open('', '', 'height=900, width=900');
-    a.document.write(divContents);
-    a.document.close();
+    a.d.write(divContents);
+    a.d.close();
     a.print();
 }
 
@@ -368,7 +369,7 @@ function extraerLogin() {
         prev : [...prev, curr], []);
     if (filteredArrUser !== '') {
         filteredArrUser.forEach((username) => {
-            let spanRegistros = document.createElement('p');
+            let spanRegistros = d.createElement('p');
             spanRegistros.innerHTML = `
         <p> Estimado/a <strong>${username.usernameValue} </strong>,</p>
         <p> Correo: 
