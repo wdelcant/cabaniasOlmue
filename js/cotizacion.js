@@ -327,10 +327,10 @@ function vaciarUsuariosLocalStorage() {
 // imprime la cotización
 function printDiv() {
     let divContents = d.getElementById("imprimir").innerHTML;
-    let a = window.open('', '', 'height=900, width=900');
-    a.d.write(divContents);
-    a.d.close();
-    a.print();
+    let impr = window.open('', '', 'height=900, width=900');
+    impr.document.write(divContents);
+    impr.document.close();
+    impr.print();
 }
 
 function botonImprimir() {
