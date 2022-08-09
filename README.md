@@ -42,6 +42,3 @@ Link web: https://wilsondelcanto.dev/cabaniasOlmue/
 <img align='center' src="https://i.ibb.co/zsZS6Ty/Caba-as-Olmu-pages-to-jpg-0017.jpg" width="100%">
 
 
-
-
-
