@@ -385,12 +385,12 @@ footer .copy {
 
 #wrap-preload{
   position: fixed;
-  z-index: 10;
+  z-index: 100;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background: #ffffffb6;
+  background: #ffffff;
   opacity: 1;
   visibility: visible;
   transition: opacity .5s ease, visibility .5s ease;

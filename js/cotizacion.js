@@ -149,7 +149,10 @@ function validarIngresos(e) {
 
 // función principal que valida los inputs de las personas ingresadas
 function validarFormulario(e) {
-    e.preventDefault();
+    e.preventDefault(); // prevenimos el comportamiento por defecto del formulario
+    
+/* El código  verifica si la cantidad total de usuarios es igual a la cantidad de usuarios
+   en el almacenamiento local. Si es así, deshabilitará la entrada y mostrará una alerta. */
     let storage = JSON.parse(localStorage.getItem('listaUsuarios'));
     if (ingresos.total <= storage?.length) {
         deshabilitaInput();
@@ -159,8 +162,9 @@ function validarFormulario(e) {
             text: 'Has alcanzo el máximo de ingresos totales!',
             footer: 'Si deseas ingresar mas vuelve a seleccionar la cantidad'
         })
-
-    } else {
+    }
+    // El código valida los campos de entrada. 
+    else {
         let nombre = inputNombre.value
         let apellido = inputApellido.value;
         let apellidoMaterno = inputApellidoMaterno.value;
@@ -280,6 +284,32 @@ function agregarUsuariosTabla() { // Agrega los usuarios a la cotización
     });
 }
 
+
+/**
+ * La función anterior desactiva los campos de entrada y el botón.
+ */
+function deshabilitaInput() {
+    document.querySelector(".habilita__Nombre").disabled = true;
+    document.querySelector(".habilita__ApellidoP").disabled = true;
+    document.querySelector(".habilita__ApellidoM").disabled = true;
+    document.querySelector(".habilita__Run").disabled = true;
+    document.querySelector(".habilita__Edad").disabled = true;
+    document.querySelector(".habilita__Btn").disabled = true;
+}
+
+/**
+ * Habilita los inputs para que se puedan modificar.
+ */
+function habilitaInput() {
+    document.querySelector(".habilita__Nombre").disabled = false;
+    document.querySelector(".habilita__ApellidoP").disabled = false;
+    document.querySelector(".habilita__ApellidoM").disabled = false;
+    document.querySelector(".habilita__Run").disabled = false;
+    document.querySelector(".habilita__Edad").disabled = false;
+    document.querySelector(".habilita__Btn").disabled = false;
+}
+
+
 // ============================================EVITA QUE LOS DATOS SE DUPLIQUEN=====================================================
 function limpiarTabla() { // Limpia la tabla de usuarios ingresados
     while (tabla.rows.length > 1) {
@@ -301,6 +331,9 @@ function limpiarPrecioTotal() { // Limpia el precio total de la cotización
 
 
 // ============================================STORAGE=====================================================
+/*
+ * Toma los datos del almacenamiento local y los representa en la tabla.
+ */
 function almacenarUsuariosLocalStorage() {
     localStorage.setItem('listaUsuarios', JSON.stringify(usuarios));
 }
@@ -316,9 +349,10 @@ function renderizarDetalle() {
 
 
 // ============================================VACIAR LISTAS=====================================================
-
-
-// vacía la lista de usuarios Almacenados con Sweetalert2
+/*
+ * Agrega un detector de eventos al botón que vacía la lista y muestra una alerta para confirmar que el
+ * usuario desea vaciar la lista.
+ */
 function vaciarLogica() {
     btnVaciar.addEventListener("click", () => {
         Swal.fire({ // se agrega alerta de que se vació correctamente
@@ -349,7 +383,9 @@ function vaciarUsuariosLocalStorage() {
 
 
 // ============================================IMPRIMIR COTIZACIONES==============================================================
-
+/*
+ * Imprime el div con el id "imprimir" y luego muestra un modal con un número aleatorio y un mensaje
+ */
 // imprime la cotización
 function printDiv() {
     let divContents = d.getElementById("imprimir").innerHTML;
@@ -388,7 +424,11 @@ function botonImprimir() {
 
 // ==========================================EXTRAE DATOS DE LOGIN=====================================================
 
-// se extrae usuario y correo de localStorage y los muestra en el detalle de la cotización
+/*
+ * Toma el nombre y el correo electrónico del usuario de localStorage y los muestra en el detalle de la
+ * cotización.
+ */
+
 function extraerLogin() {
     let usuarioRegistrados = localStorage.getItem('userList');
     let arrayUser = usuarioRegistrados ? JSON.parse(usuarioRegistrados) : [];
@@ -408,23 +448,7 @@ function extraerLogin() {
     }
 }
 
-function deshabilitaInput() {
-    document.querySelector(".habilita__Nombre").disabled = true;
-    document.querySelector(".habilita__ApellidoP").disabled = true;
-    document.querySelector(".habilita__ApellidoM").disabled = true;
-    document.querySelector(".habilita__Run").disabled = true;
-    document.querySelector(".habilita__Edad").disabled = true;
-    document.querySelector(".habilita__Btn").disabled = true;
-}
 
-function habilitaInput() {
-    document.querySelector(".habilita__Nombre").disabled = false;
-    document.querySelector(".habilita__ApellidoP").disabled = false;
-    document.querySelector(".habilita__ApellidoM").disabled = false;
-    document.querySelector(".habilita__Run").disabled = false;
-    document.querySelector(".habilita__Edad").disabled = false;
-    document.querySelector(".habilita__Btn").disabled = false;
-}
 
 
 // ============================================INICIA EL PROGRAMA=====================================================

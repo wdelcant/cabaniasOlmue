@@ -39,6 +39,13 @@
 </head>
 
 <body>
+    <div id="wrap-preload">
+        <div class="spinner">
+            <div class="spinner-border text-warning" role="status">
+                <span class="sr-only">Cargando...</span>
+            </div>
+        </div>
+    </div>
     <header>
         <div class="header-blue contacto">
             <!-- menu principal -->
@@ -80,12 +87,7 @@
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="#"></a>
 
-                <form action="../pages/reserva.html">
-                    <button type="submit"
-                        class="btn btn-outline-light order-first order-sm-last pulse animated infinite">
-                        RESERVAR
-                    </button>
-                </form>
+
                 <div class="collapse navbar-collapse flex-grow-0 order-md-first" id="navcol-6">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item"></li>
@@ -198,13 +200,13 @@
                             required></textarea>
 
 
-                        <input type="submit" value="Enviar">
+                        <input class="btn__contact" type="submit" value="Enviar">
 
                         <div class="contact-form-loader none">
                             <img src="../assets/svg/loading.svg" alt="Cargando">
                         </div>
                         <div class="contact-form-response none">
-                            <p>Los datos han sido enviados</p>
+
                         </div>
                         <input type="hidden" name="_subject" value="Tienes un nuevo contacto!">
                         <input type="hidden" name="_template" value="table">
@@ -222,25 +224,25 @@
     <!-- Footer -->
     <footer class="text-center text-lg-start bg-dark text-white ">
         <section class=" justify-content-center justify-content-lg-between p-4 border-bottom">
-            <form>
-                <div class="row d-flex justify-content-center">
-                    <div class="col-auto">
-                        <p class="pt-2">
-                            <strong>SUSCRÍBETE a nuestro boletín de noticias y ofertas</strong>
-                        </p>
-                    </div>
-                    <div class="col-md-5 col-12">
-                        <div class="form-outline form-white mb-4">
-                            <input type="email" class="form-control" placeholder="Ingrese su correo electrónico" />
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <button type="submit" class="btn btn-outline-light mb-4">
-                            SUSCRÍBETE
-                        </button>
+
+            <div class="row d-flex justify-content-center">
+                <div class="col-auto">
+                    <p class="pt-2">
+                        <strong>SUSCRÍBETE a nuestro boletín de noticias y ofertas</strong>
+                    </p>
+                </div>
+                <div class="col-md-5 col-12">
+                    <div class="form-outline form-white mb-4">
+                        <input type="email" class="form-control" placeholder="Ingrese su correo electrónico" />
                     </div>
                 </div>
-            </form>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-outline-light mb-4">
+                        SUSCRÍBETE
+                    </button>
+                </div>
+            </div>
+
         </section>
         <!--Links  -->
         <section class="">
