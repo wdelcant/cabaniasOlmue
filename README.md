@@ -7,26 +7,33 @@ Link web: https://wilsondelcanto.dev/cabaniasOlmue/
 
 ## Navegacion:
 
+<img align='center' src="https://i.ibb.co/wSDhXc2/Caba-as-Olmu-pages-to-jpg-0001.jpg" width="100%">
 
-__index.html__ //
+<img align='center' src="https://i.ibb.co/YX1cN0s/Caba-as-Olmu-pages-to-jpg-0002.jpg" width="100%">
 
-Debe realizar click en registrarse al costado derecho superior
+<img align='center' src="https://i.ibb.co/ySqqnnx/Caba-as-Olmu-pages-to-jpg-0003.jpg" width="100%">
 
-__/pages/reserva.html__ //
+<img align='center' src="https://i.ibb.co/vPM1cws/Caba-as-Olmu-pages-to-jpg-0004.jpg" width="100%">
 
-Ingrese los datos de las Personas
+<img align='center' src="https://i.ibb.co/Tmwr9J5/Caba-as-Olmu-pages-to-jpg-0005.jpg" width="100%">
 
-> Nombre 
-> Apellido Parterno
-> Apellido Materno
-> RUN
-> Edad
+<img align='center' src="https://i.ibb.co/Trr28fj/Caba-as-Olmu-pages-to-jpg-0006.jpg" width="100%">
 
-Después se presiona el botón "Detalle reserva"
+<img align='center' src="https://i.ibb.co/KKh0RQ8/Caba-as-Olmu-pages-to-jpg-0007.jpg" width="100%">
 
-// Se abre modal.
-// Muestra cotización de cabañas.
-// Muestra Vaciar lista e imprimir.
-// Al vaciar lista borra todos los usuarios registrados en la cotizacion
-// Al imprimir da impresión de la cotización
+<img align='center' src="https://i.ibb.co/T4XNtDN/Caba-as-Olmu-pages-to-jpg-0008.jpg" width="100%">
+
+<img align='center' src="https://i.ibb.co/pWNP462/Caba-as-Olmu-pages-to-jpg-0009.jpg" width="100%">
+
+<img align='center' src="https://i.ibb.co/D49wkcZ/Caba-as-Olmu-pages-to-jpg-0010.jpg" width="100%">
+
+<img align='center' src="https://i.ibb.co/QHjQ2fz/Caba-as-Olmu-pages-to-jpg-0011.jpg" width="100%">
+
+<img align='center' src="https://i.ibb.co/0h1XPf9/Caba-as-Olmu-pages-to-jpg-0012.jpg" width="100%">
+
+<img align='center' src="https://i.ibb.co/VpWCVnB/Caba-as-Olmu-pages-to-jpg-0013.jpg" width="100%">
+
+<img align='center' src="https://i.ibb.co/F01nXQn/Caba-as-Olmu-pages-to-jpg-0014.jpg" width="100%">
+
+
 
