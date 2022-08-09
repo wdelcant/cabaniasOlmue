@@ -140,7 +140,8 @@
                             <small>Mensaje de error</small>
                         </div>
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">Ingresar usuarios</button>
+                            <a href="#formulario"><button type="submit" class="btn btn-primary">Ingresar
+                                    cantidad</button></a>
                         </div>
 
                     </form>
@@ -152,7 +153,7 @@
                         <h3>Ingrese las personas que ingresaran al recinto</h3>
                         <div class="mb-3 form-control">
                             <label class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="inputNombre" />
+                            <input type="text" class="form-control habilita__Nombre" id="inputNombre" required />
                             <i class="fa fa-check-circle"></i>
                             <i class="fa fa-exclamation-circle"></i>
                             <small>Mensaje de error</small>
@@ -160,7 +161,7 @@
 
                         <div class="mb-3 form-control">
                             <label class="form-label">Apellido paterno</label>
-                            <input type="text" class="form-control" id="inputApellido" />
+                            <input type="text" class="form-control habilita__ApellidoP" id="inputApellido" required />
                             <i class="fa fa-check-circle"></i>
                             <i class="fa fa-exclamation-circle"></i>
                             <small>Mensaje de error</small>
@@ -168,7 +169,8 @@
 
                         <div class="mb-3 form-control">
                             <label class="form-label">Apellido materno</label>
-                            <input type="text" class="form-control" id="inputApellidoMaterno" />
+                            <input type="text" class="form-control habilita__ApellidoM" id="inputApellidoMaterno"
+                                required />
                             <i class="fa fa-check-circle"></i>
                             <i class="fa fa-exclamation-circle"></i>
                             <small>Mensaje de error</small>
@@ -176,7 +178,8 @@
 
                         <div class="mb-3 form-control">
                             <label class="form-label">RUN</label>
-                            <input type="text" class="form-control" id="inputRun" placeholder="11111111-1" />
+                            <input type="text" class="form-control habilita__Run" id="inputRun" placeholder="11111111-1"
+                                required />
                             <i class="fa fa-check-circle"></i>
                             <i class="fa fa-exclamation-circle"></i>
                             <small>Mensaje de error</small>
@@ -184,14 +187,15 @@
 
                         <div class="mb-3 form-control">
                             <label class="form-label">Edad</label>
-                            <input type="number" class="form-control" id="inputEdad" value="0" />
+                            <input type="number" class="form-control habilita__Edad" id="inputEdad" value="0"
+                                required />
                             <i class="fa fa-check-circle"></i>
                             <i class="fa fa-exclamation-circle"></i>
                             <small>Mensaje de error</small>
                         </div>
 
                         <div class="d-grid gap-2">
-                            <button id="btnAdd" type="submit" class="btn btn-primary">Agregar</button>
+                            <button id="btnAdd" type="submit" class="btn btn-primary habilita__Btn">Agregar</button>
                         </div>
 
                     </form>

@@ -1,7 +1,7 @@
 // declaramos las variables a ocupar
 
 let usuarios = []; // guarda usuarios que accederán al sistema
-let ingresos = []; // guarda ingresos totales
+let ingresos = ""; // guarda ingresos totales
 
 let formulario;
 let inputNombre;
@@ -28,6 +28,7 @@ function main() {
     inicializarElementos();
     inicializarEventos();
     extraerLogin();
+    deshabilitaInput();
     agregarTotalDetalles();
     obtenerUsuariosLocalStorage();
     agregarUsuariosTabla();
@@ -63,7 +64,7 @@ function inicializarElementos() { // inicializa los elementos
     inputApellido = d.getElementById('inputApellido');
     inputApellidoMaterno = d.getElementById('inputApellidoMaterno');
     inputRun = d.getElementById('inputRun');
-    inputEdad = d.getElementById('inputEdad');
+    inputEdad = d.getElementById('inputEdad')
     tabla = d.getElementById('tablaUsuarios');
     datosRegistros = d.getElementById('datosRegistros');
     btnVaciar = d.getElementById('btnVaciar');
@@ -122,11 +123,13 @@ function validarIngresos(e) {
     } else if (total >= 13 && cabins === 2) {
         alertError();
     } else {
-        ingresos.push(ingreso);
+        ingresos = ingreso;
+        habilitaInput();
         agregarTotalDetalles();
         AgregarTotalDinero();
         limpiarIngresosTotales();
         limpiarPrecioTotal();
+
         const Toast = Swal.mixin({
             toast: true,
             background: '#f7e6ba',
@@ -137,117 +140,131 @@ function validarIngresos(e) {
         })
         Toast.fire({
             icon: 'success',
-            title: 'Total agregado correctamente'
+            title: `Ingresa un total de : ${ingresos.total} personas `,
         })
+
+
     }
 }
 
 // función principal que valida los inputs de las personas ingresadas
 function validarFormulario(e) {
     e.preventDefault();
-    let nombre = inputNombre.value
-    let apellido = inputApellido.value;
-    let apellidoMaterno = inputApellidoMaterno.value;
-    let run = inputRun.value;
-    let edad = parseInt(inputEdad.value);
-    let ID = 0; // se le asigna un ID a cada usuario
-    while (ID < usuarios.length) {
-        ID++;
-    }
-    let usuario = new Usuarios(ID, nombre, apellido, apellidoMaterno, run, edad);
-
-    const validaNombre = () => {
-        nombre === '' ? setErrorFor(inputNombre, 'El nombre no puede estar vacío.') :
-            nombre = !isLetters(nombre) ? setErrorFor(inputNombre, 'Debes escribir el nombre.') :
-            nombre.length < 3 ? setErrorFor(inputNombre, 'El nombre debe tener al menos 3 caracteres.') :
-            nombre.length > 20 ? setErrorFor(inputNombre, 'El nombre debe tener máximo 20 caracteres.') :
-            setSuccessFor(inputNombre);
-    }
-    validaNombre(nombre);
-
-    const validaApellido = () => {
-        apellido === '' ? setErrorFor(inputApellido, 'El apellido no puede estar vacío.') :
-            apellido = !isLetters(apellido) ? setErrorFor(inputApellido, 'Debes escribir el apellido.') :
-            apellido.length < 3 ? setErrorFor(inputApellido, 'El apellido debe tener al menos 3 caracteres.') :
-            apellido.length > 20 ? setErrorFor(inputApellido, 'El apellido debe tener máximo 20 caracteres.') :
-            setSuccessFor(inputApellido);
-    }
-    validaApellido(apellido);
-
-    const validaApellidoMaterno = () => {
-        apellidoMaterno === '' ? setErrorFor(inputApellidoMaterno, 'El apellido materno no puede estar vacío.') :
-            apellidoMaterno = !isLetters(apellidoMaterno) ? setErrorFor(inputApellidoMaterno, 'Debes escribir el apellido materno.') :
-            apellidoMaterno.length < 3 ? setErrorFor(inputApellidoMaterno, 'El apellido materno debe tener al menos 3 caracteres.') :
-            apellidoMaterno.length > 20 ? setErrorFor(inputApellidoMaterno, 'El apellido materno debe tener máximo 20 caracteres.') :
-            setSuccessFor(inputApellidoMaterno);
-    }
-    validaApellidoMaterno(apellidoMaterno);
-
-    const validaRun = () => {
-        run === '' ? setErrorFor(inputRun, 'El RUN no puede estar vacío.') :
-            run = !isRun(run) ? setErrorFor(inputRun, 'Debes escribir el run.') :
-            run.length < 10 ? setErrorFor(inputRun, 'El run debe tener al menos 10 caracteres.') :
-            run.length > 10 ? setErrorFor(inputRun, 'El run debe tener máximo 10 caracteres.') :
-            setSuccessFor(inputRun);
-    }
-    validaRun(run);
-
-    const validaEdad = () => {
-        edad === '' ? setErrorFor(inputEdad, 'La edad no puede estar vacía.') :
-            edad <= 0 ? setErrorFor(inputEdad, 'La edad debe ser mayor a 0.') :
-            edad > 100 ? setErrorFor(inputEdad, 'La edad debe ser menor a 100.') :
-            setSuccessFor(inputEdad);
-    }
-    validaEdad(edad);
-
-    // se valida ingresos totales con Sweetalert2
-    if (usuarios !== '' && isLetters(nombre) && isLetters(apellido) && isLetters(apellidoMaterno) && !isRun(run) && edad > 0 && edad <= 100) {
-        usuarios.push(usuario);
-        formulario.reset();
-        limpiarTabla();
-        agregarUsuariosTabla();
-        almacenarUsuariosLocalStorage();
-        const Toast = Swal.mixin({ // se agrega alerta de que se agregó correctamente
-            toast: true,
-            background: '#f7e6ba',
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 2000,
-            timerProgressBar: true,
+    let storage = JSON.parse(localStorage.getItem('listaUsuarios'));
+    if (ingresos.total <= storage?.length) {
+        deshabilitaInput();
+        Swal.fire({
+            icon: 'error',
+            title: 'Uyss...',
+            text: 'Has alcanzo el máximo de ingresos totales!',
+            footer: 'Si deseas ingresar mas vuelve a seleccionar la cantidad'
         })
-        Toast.fire({
-            icon: 'success',
-            title: 'Agregado correctamente'
-        })
+
     } else {
-        alertError();
+        let nombre = inputNombre.value
+        let apellido = inputApellido.value;
+        let apellidoMaterno = inputApellidoMaterno.value;
+        let run = inputRun.value;
+        let edad = parseInt(inputEdad.value);
+        let ID = 0; // se le asigna un ID a cada usuario
+        while (ID < usuarios.length) {
+            ID++;
+        }
+        let usuario = new Usuarios(ID, nombre, apellido, apellidoMaterno, run, edad);
+
+        const validaNombre = () => {
+            nombre === '' ? setErrorFor(inputNombre, 'El nombre no puede estar vacío.') :
+                nombre = !isLetters(nombre) ? setErrorFor(inputNombre, 'Debes escribir el nombre.') :
+                nombre.length < 3 ? setErrorFor(inputNombre, 'El nombre debe tener al menos 3 caracteres.') :
+                nombre.length > 20 ? setErrorFor(inputNombre, 'El nombre debe tener máximo 20 caracteres.') :
+                setSuccessFor(inputNombre);
+        }
+        validaNombre(nombre);
+
+        const validaApellido = () => {
+            apellido === '' ? setErrorFor(inputApellido, 'El apellido no puede estar vacío.') :
+                apellido = !isLetters(apellido) ? setErrorFor(inputApellido, 'Debes escribir el apellido.') :
+                apellido.length < 3 ? setErrorFor(inputApellido, 'El apellido debe tener al menos 3 caracteres.') :
+                apellido.length > 20 ? setErrorFor(inputApellido, 'El apellido debe tener máximo 20 caracteres.') :
+                setSuccessFor(inputApellido);
+        }
+        validaApellido(apellido);
+
+        const validaApellidoMaterno = () => {
+            apellidoMaterno === '' ? setErrorFor(inputApellidoMaterno, 'El apellido materno no puede estar vacío.') :
+                apellidoMaterno = !isLetters(apellidoMaterno) ? setErrorFor(inputApellidoMaterno, 'Debes escribir el apellido materno.') :
+                apellidoMaterno.length < 3 ? setErrorFor(inputApellidoMaterno, 'El apellido materno debe tener al menos 3 caracteres.') :
+                apellidoMaterno.length > 20 ? setErrorFor(inputApellidoMaterno, 'El apellido materno debe tener máximo 20 caracteres.') :
+                setSuccessFor(inputApellidoMaterno);
+        }
+        validaApellidoMaterno(apellidoMaterno);
+
+        const validaRun = () => {
+            run === '' ? setErrorFor(inputRun, 'El RUN no puede estar vacío.') :
+                run = !isRun(run) ? setErrorFor(inputRun, 'Debes escribir el run.') :
+                run.length < 10 ? setErrorFor(inputRun, 'El run debe tener al menos 10 caracteres.') :
+                run.length > 10 ? setErrorFor(inputRun, 'El run debe tener máximo 10 caracteres.') :
+                setSuccessFor(inputRun);
+        }
+        validaRun(run);
+
+        const validaEdad = () => {
+            edad === '' ? setErrorFor(inputEdad, 'La edad no puede estar vacía.') :
+                edad <= 0 ? setErrorFor(inputEdad, 'La edad debe ser mayor a 0.') :
+                edad > 100 ? setErrorFor(inputEdad, 'La edad debe ser menor a 100.') :
+                setSuccessFor(inputEdad);
+        }
+        validaEdad(edad);
+
+        // se valida ingresos totales con Sweetalert2
+        if (usuarios !== '' && isLetters(nombre) && isLetters(apellido) && isLetters(apellidoMaterno) && !isRun(run) && edad > 0 && edad <= 100) {
+
+            // se agrega un nuevo usuario a la lista de usuarios
+            usuarios.push(usuario);
+            formulario.reset();
+            limpiarTabla();
+            agregarUsuariosTabla();
+            almacenarUsuariosLocalStorage();
+            const Toast = Swal.mixin({ // se agrega alerta de que se agregó correctamente
+                toast: true,
+                background: '#f7e6ba',
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+            })
+            Toast.fire({
+                icon: 'success',
+                title: `Has ingresado ${ID +=1 } de ${ingresos.total}.`,
+            })
+        } else {
+            alertError();
+        }
     }
 }
 
+// ============================================DOM=====================================================
 
 function agregarTotalDetalles() { // Agrega el total de los ingresos a la tabla
-    ingresos.forEach((ingreso) => {
-        let Detalle = d.createElement('ul');
-        Detalle.innerHTML = `
-        <li>Cantidad de cabañas: ${ingreso.cabins}</li>
-        <li>Adultos: ${ingreso.adults}</li>
-        <li>Niños: ${ingreso.children}</li>
-        <li>Total ingresos: ${ingreso.total}</li>
+
+    let Detalle = d.createElement('ul');
+    Detalle.innerHTML = `
+        <li>Cantidad de cabañas: ${ingresos.cabins}</li>
+        <li>Adultos: ${ingresos.adults}</li>
+        <li>Niños: ${ingresos.children}</li>
+        <li>Total ingresos: ${ingresos.total}</li>
         `;
-        listaDetalles.appendChild(Detalle);
-    });
+    listaDetalles.appendChild(Detalle);;
 }
 
 const AgregarTotalDinero = () => { // Agrega el precio total del a cotización
-    ingresos.forEach((ingreso) => {
-        let spanTotal = d.createElement('p');
-        totalP = 70 * ingreso.cabins
-        spanTotal.innerHTML = `
+
+    let spanTotal = d.createElement('p');
+    totalP = 70 * ingresos.cabins
+    spanTotal.innerHTML = `
         <span><strong>Total a pagar: $${totalP}.000</strong></span>
         `;
-        totalAPagar.appendChild(spanTotal);
-    });
-
+    totalAPagar.appendChild(spanTotal);
 }
 
 function agregarUsuariosTabla() { // Agrega los usuarios a la cotización
@@ -281,9 +298,9 @@ function limpiarPrecioTotal() { // Limpia el precio total de la cotización
         totalAPagar.removeChild(totalAPagar.firstChild);
     }
 }
-// ============================================FIN=====================================================
 
-// storage de datos de usuarios
+
+// ============================================STORAGE=====================================================
 function almacenarUsuariosLocalStorage() {
     localStorage.setItem('listaUsuarios', JSON.stringify(usuarios));
 }
@@ -296,6 +313,11 @@ function obtenerUsuariosLocalStorage() {
 function renderizarDetalle() {
     limpiarTabla();
 }
+
+
+// ============================================VACIAR LISTAS=====================================================
+
+
 // vacía la lista de usuarios Almacenados con Sweetalert2
 function vaciarLogica() {
     btnVaciar.addEventListener("click", () => {
@@ -309,6 +331,7 @@ function vaciarLogica() {
             if (result.isConfirmed) {
                 Swal.fire('Lista vacía', '', 'success')
                 vaciarUsuariosLocalStorage();
+                deshabilitaInput();
             }
         })
     });
@@ -316,13 +339,16 @@ function vaciarLogica() {
 
 function vaciarUsuariosLocalStorage() {
     usuarios = [];
-    ingresos = [];
+    ingresos = '';
     listaDetalles.innerHTML = '';
     totalAPagar.innerHTML = '';
     renderizarDetalle();
     localStorage.removeItem('listaUsuarios');
 
 } // vacía la lista de usuarios Almacenados
+
+
+// ============================================IMPRIMIR COTIZACIONES==============================================================
 
 // imprime la cotización
 function printDiv() {
@@ -354,13 +380,15 @@ function botonImprimir() {
                     vaciarUsuariosLocalStorage();
                     localStorage.removeItem('userList');
                     window.location.href = "../index.html";
-                }, 6000); // se agrega un tiempo de espera para que se imprima
+                }, 3000); // se agrega un tiempo de espera para que se imprima
             }
         })
     });
 }
 
-// se extrae usuario y correo de localStorage
+// ==========================================EXTRAE DATOS DE LOGIN=====================================================
+
+// se extrae usuario y correo de localStorage y los muestra en el detalle de la cotización
 function extraerLogin() {
     let usuarioRegistrados = localStorage.getItem('userList');
     let arrayUser = usuarioRegistrados ? JSON.parse(usuarioRegistrados) : [];
@@ -379,7 +407,28 @@ function extraerLogin() {
         });
     }
 }
-//inicializar el programa
+
+function deshabilitaInput() {
+    document.querySelector(".habilita__Nombre").disabled = true;
+    document.querySelector(".habilita__ApellidoP").disabled = true;
+    document.querySelector(".habilita__ApellidoM").disabled = true;
+    document.querySelector(".habilita__Run").disabled = true;
+    document.querySelector(".habilita__Edad").disabled = true;
+    document.querySelector(".habilita__Btn").disabled = true;
+}
+
+function habilitaInput() {
+    document.querySelector(".habilita__Nombre").disabled = false;
+    document.querySelector(".habilita__ApellidoP").disabled = false;
+    document.querySelector(".habilita__ApellidoM").disabled = false;
+    document.querySelector(".habilita__Run").disabled = false;
+    document.querySelector(".habilita__Edad").disabled = false;
+    document.querySelector(".habilita__Btn").disabled = false;
+}
+
+
+// ============================================INICIA EL PROGRAMA=====================================================
+
 main();
 
-//=============================== V.5 =====================================================
+//=============================== V.6 =====================================================

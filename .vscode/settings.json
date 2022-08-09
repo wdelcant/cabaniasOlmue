@@ -9,5 +9,6 @@
     "renderizar",
     "Swal",
     "Toastify"
-  ]
+  ],
+  "git.ignoreLimitWarning": true
 }
