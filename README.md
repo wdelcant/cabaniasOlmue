@@ -2,6 +2,7 @@
 
 ---
 Link web: https://wilsondelcanto.dev/cabaniasOlmue/
+Link como usar la web https://github.com/wdelcant/cabaniasOlmue/blob/main/Caba%C3%B1as%20Olmu%C3%A9.pdf
 
 ---
 
