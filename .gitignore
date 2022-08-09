@@ -1,8 +1,5 @@
-.sass-cache/
-*.css.map
-*.sass.map
-*.scss.map
 node_modules
+.vscode
+explicacion
 sass
-test.html
-/js/otros
+.gitignore

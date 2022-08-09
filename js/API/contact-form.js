@@ -45,6 +45,7 @@ function contactForm() {
 
         $loader.classList.remove("none");
         $btn__contact.classList.add("none");
+        localStorage.removeItem('userList'); // elimina el localstorage para que no se repita el registro
 
         // API envía correo electrónico a traves de una petición AJAX
         /*
